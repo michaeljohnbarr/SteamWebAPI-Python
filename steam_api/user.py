@@ -43,7 +43,9 @@ class ISteamUser(SteamWebAPI):
             pass
         else:
             ",".join(steamids)
-        params = {'steamids': steamids}
+        params = {
+            'steamids': steamids,
+        }
         return self.generate_api_url(self.interface, 'GetPlayerBans', 1,
             params)['players']
 
@@ -52,17 +54,23 @@ class ISteamUser(SteamWebAPI):
             pass
         else:
             ",".join(steamids)
-        params = {'steamids': steamids}
+        params = {
+            'steamids': steamids,
+        }
         return self.generate_api_url(self.interface, 'GetPlayerSummaries', 2,
             params)['response']['players']
 
     def GetUserGroupList(self, steamid):
-        params = {'steamid': steamid}
+        params = {
+            'steamid': steamid,
+        }
         return self.generate_api_url(self.interface, 'GetUserGroupList', 1,
             params)['response']['groups']
 
     def ResolveVanityURL(self, vanityURL):
-        params = {'vanityurl': vanityURL}
+        params = {
+            'vanityurl': vanityURL,
+        }
         return self.generate_api_url(self.interface, 'ResolveVanityURL', 1,
             params)['response']
 
@@ -102,7 +110,7 @@ class ISteamUserStats(SteamWebAPI):
             'appid': appid,
             'l': l,
         }
-        return self.generate_api_url(self.interface, 'GetSchemaForGame(', 2,
+        return self.generate_api_url(self.interface, 'GetSchemaForGame', 2,
             params)
     
     def GetUserStatsForGame(self, steamid, appid):
@@ -113,7 +121,7 @@ class ISteamUserStats(SteamWebAPI):
         return self.generate_api_url(self.interface, 'GetUserStatsForGame', 2,
             params)
 
-    def GetPlayerAchievements(self, steamid, appid, l='en'):
+    def GetPlayerAchievements(self, steamid, appid, l=''):
         params = {
             'steamid': steamid,
             'appid': appid,

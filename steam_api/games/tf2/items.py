@@ -1,3 +1,13 @@
+# =============================================================================
+# >> IMPORTS
+# =============================================================================
+# API Imports
+from steam_api.api_base import SteamWebAPI
+
+
+# =============================================================================
+# >> CLASSES
+# =============================================================================
 class ITFPromos_440(SteamWebAPI):
     def __init__(self):
         self.interface = 'ITFPromos_440'
@@ -37,7 +47,7 @@ class ITFItems_440(SteamWebAPI):
         return self.generate_api_url(self.interface, 'GetPlayerItems', 1,
             params, key=True)
 
-    def GetSchema(self, language='en'):
+    def GetSchema(self, language=''):
         params = {
             'language': language,
             }
@@ -57,7 +67,7 @@ class IEconItems_440(SteamWebAPI):
         return self.generate_api_url(self.interface, 'GetPlayerItems', 1,
             params, key=True)
 
-    def GetSchema(self, language='en'):
+    def GetSchema(self, language=''):
         params = {
             'language': language,
             }

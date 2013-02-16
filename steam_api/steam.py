@@ -1,9 +1,19 @@
+# =============================================================================
+# >> IMPORTS
+# =============================================================================
+# API Imports
+from api_base import SteamWebAPI
+
+
+# =============================================================================
+# >> CLASSES
+# =============================================================================
 class ISteamEconomy(SteamWebAPI):
     def __init__(self):
         self.interface = 'ISteamEconomy'
         super(ISteamEconomy, self).__init__()
 
-    def GetAssetPrices(self, appid, currency='usd', language='en'):
+    def GetAssetPrices(self, appid, currency='usd', language=''):
         params = {
             'appid': appid,
             'currency': currency,
@@ -12,7 +22,7 @@ class ISteamEconomy(SteamWebAPI):
         return self.generate_api_url(self.interface, 'GetAssetPrices', 1,
             params, key=True)
 
-    def GetAssetClassInfo(self, appid, language, class_count, **kwargs):
+    def GetAssetClassInfo(self, appid, class_count, language='', **kwargs):
         params = {
             'appid': appid,
             'language': language,

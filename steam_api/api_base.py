@@ -27,10 +27,20 @@ class SteamWebAPI(object):
         # Automatically add the API key
         params.update({'key': self.key})
 
+        # Update language to default if not set
+        if 'l' in params:
+            if not params['l']:
+                params.update({'l': self.language})
+
+        if 'language' in params:
+            if not params['language']:
+                params.update({'language': self.language})
+
         # Format the URL
         url = 'http://api.steampowered.com/%s/%s/%s/?%s' % (interface, method,
             version, urllib.urlencode(params))
-        print url
+
+        # Return the APIQuery instance
         return APIQuery(url)
 
 

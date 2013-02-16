@@ -1,9 +1,19 @@
+# =============================================================================
+# >> IMPORTS
+# =============================================================================
+# API Imports
+from steam_api.api_base import SteamWebAPI
+
+
+# =============================================================================
+# >> CLASSES
+# =============================================================================
 class IEconDOTA2_570(SteamWebAPI):
     def __init__(self):
         self.interface = 'IEconDOTA2_570'
         super(IEconDOTA2_570, self).__init__()
 
-    def GetHeroes(self, language, itemizedonly):
+    def GetHeroes(self, itemizedonly, language=''):
         params = {
             'language': language,
             'itemizedonly': bool(itemizedonly),
@@ -11,14 +21,14 @@ class IEconDOTA2_570(SteamWebAPI):
         return self.generate_api_url(self.interface, 'GetHeroes', 1,
             params, key=True)
 
-    def GetRarities(self, language):
+    def GetRarities(self, language=''):
         params = {
             'language': language,
             }
         return self.generate_api_url(self.interface, 'GetRarities', 1,
             params, key=True)
 
-    def GetStoreSections(self, language):
+    def GetStoreSections(self, language=''):
         params = {
             'language': language,
             }
@@ -65,7 +75,7 @@ class IEconItems_570(SteamWebAPI):
         return self.generate_api_url(self.interface, 'GetPlayerItems', 1,
             params, key=True)
 
-    def GetSchema(self, language='en'):
+    def GetSchema(self, language=''):
         params = {
             'language': language,
             }
