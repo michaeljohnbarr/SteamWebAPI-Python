@@ -2,7 +2,7 @@
 
 # Your Steam API Key as requested from
 #   https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey
-STEAM_API_KEY = '9C6B6A894DD85CA8C11A119CA1B410D7'
+STEAM_API_KEY = ''
 
 # The default language to use throughout the API.
 #   The ISO639-1 language code for the language all localized strings should be
