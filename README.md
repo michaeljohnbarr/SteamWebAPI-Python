@@ -37,3 +37,23 @@ Contains the class APIQuery, which is a utility class for returning data in eith
     
     # Print the URL for the XML API Query
     iSteamUser.GetFriendList(steamid).as_xml().url
+
+../games/< game name | id >/*.*
+-----------------------------
+Contains game-specific libraries/classes:
+
+* ../games/710/items.py
+* ../games/csgo/items.py
+* ../games/css_beta/items.py
+* ../games/dota2/gameclient.py
+* ../games/dota2/items.py
+* ../games/dota2/match.py
+* ../games/dota2_test/gameclient.py
+* ../games/dota2_test/items.py
+* ../games/dota2_test/match.py
+* ../games/portal2/items.py
+* ../games/portal2/leaderboards.py
+* ../games/tf2/gameclient.py
+* ../games/tf2/items.py
+* ../games/tf2_beta/gameclient.py
+* ../games/tf2_beta/items.py
