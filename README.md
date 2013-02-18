@@ -102,12 +102,27 @@ iEconDota2.GetTicketSaleStatus()
 ITFPromos = ITFPromos_570()
 ITFPromos.GetItemID(steamid, promoid)
 ITFPromos.GrantItem(steamid, promoid)
+
+# Getting economy information using the interface IEconItems_570
+iEconItems = IEconItems_570()
+iEconItems.GetPlayerItems(steamid)
+iEconItems.GetSchema(language='')
+iEconItems.GetStoreStatus()
+```
+
+### ../games/dota2/match.py
+```python
+# Getting match information using the interface IDOTA2Match_570
+iDota2Match = IDOTA2Match_570()
+iDota2Match.GetMatchDetails(match_id)
+iDota2Match.GetMatchHistory(player_name=None, hero_id=None, game_mode=None,skill=None,
+                            date_min=None, date_max=None, min_players=None,
+                            account_id=None, league_id=None, start_at_match_id=None,
+                            matches_requested=None, tournament_games_only=None)
 ```
 
 ../games/< game name | id >/*.*
 -----------------------------
-* ../games/dota2/items.py
-* ../games/dota2/match.py
 * ../games/dota2_test/gameclient.py
 * ../games/dota2_test/items.py
 * ../games/dota2_test/match.py
