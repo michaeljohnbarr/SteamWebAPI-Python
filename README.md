@@ -1,7 +1,7 @@
 SteamWebAPI-Python
 ==================
 
-A class-based wrapper for the Steam Community Web API.
+A class-based wrapper for the Steam Community Web API. Each class is the "interface" provided by the Steam Web API which contains the methods within the interface.
 
 settings.py:
 ------------
@@ -38,11 +38,22 @@ Contains the class APIQuery, which is a utility class for returning data in eith
     # Print the URL for the XML API Query
     iSteamUser.GetFriendList(steamid).as_xml().url
 
+### ../games/710/items.py:
+Contains game-specific libraries/classes (seems to be for Valve's development of CS:GO):
+```python
+# Getting and granting promo items using interface ITFPromos_710
+ITFPromos = ITFPromos_710()
+ITFPromos.GetItemID(steamid, promoid)
+ITFPromos.GrantItem(steamid, promoid)
+
+# Getting economy items and schema using interface IEconItems_710
+iEconItems = IEconItems_710()
+iEconItems.GetPlayerItems(steamid)
+iEconItems.GetSchema(language='')
+```
+
 ../games/< game name | id >/*.*
 -----------------------------
-Contains game-specific libraries/classes:
-
-* ../games/710/items.py
 * ../games/csgo/items.py
 * ../games/css_beta/items.py
 * ../games/dota2/gameclient.py
