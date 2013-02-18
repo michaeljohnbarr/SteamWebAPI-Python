@@ -39,7 +39,7 @@ Contains the class APIQuery, which is a utility class for returning data in eith
     iSteamUser.GetFriendList(steamid).as_xml().url
 
 ### ../games/710/items.py:
-Contains game-specific libraries/classes (seems to be for Valve's development of CS:GO):
+Contains game-specific interfaces for Valve's Development Version of Counter-Strike: Global Offensive:
 ```python
 # Getting and granting promo items using interface ITFPromos_710
 ITFPromos = ITFPromos_710()
@@ -52,11 +52,60 @@ iEconItems.GetPlayerItems(steamid)
 iEconItems.GetSchema(language='')
 ```
 
+### ../games/csgo/items.py:
+Contains game-specific interfaces for Counter-Strike: Global Offensive:
+```python
+# Getting and granting promo items using interface ITFPromos_730
+ITFPromos = ITFPromos_730()
+ITFPromos.GetItemID(steamid, promoid)
+ITFPromos.GrantItem(steamid, promoid)
+
+# Getting economy items and schema using interface IEconItems_730
+iEconItems = IEconItems_730()
+iEconItems.GetPlayerItems(steamid)
+iEconItems.GetSchema(language='')
+```
+
+### ../games/css_beta/items.py:
+Contains game-specific interfaces for Counter-Strike: Source Beta:
+```python
+# Getting and granting promo items using interface ITFPromos_260
+ITFPromos = ITFPromos_260()
+ITFPromos.GetItemID(steamid, promoid)
+ITFPromos.GrantItem(steamid, promoid)
+
+# Getting economy items and schema using interface IEconItems_260
+iEconItems = IEconItems_260()
+iEconItems.GetPlayerItems(steamid)
+iEconItems.GetSchema(language='')
+```
+
+### ../games/dota2/gameclient.py
+```python
+# Getting game client information using interface IGCVersion_570
+IGCVersion = IGCVersion_570()
+IGCVersion.GetClientVersion()
+IGCVersion.GetClusterVersion()
+IGCVersion.GetServerVersion()
+```
+
+### ../games/dota2/items.py
+```python
+# Getting economy information using the interface IEconDOTA2_570
+iEconDota2 = IEconDOTA2_570()
+iEconDota2.GetHeroes(itemizedonly, language='')
+iEconDota2.GetRarities(language='')
+iEconDota2.GetStoreSections(language='')
+iEconDota2.GetTicketSaleStatus()
+
+# Getting and granting promo items using interface ITFPromos_570
+ITFPromos = ITFPromos_570()
+ITFPromos.GetItemID(steamid, promoid)
+ITFPromos.GrantItem(steamid, promoid)
+```
+
 ../games/< game name | id >/*.*
 -----------------------------
-* ../games/csgo/items.py
-* ../games/css_beta/items.py
-* ../games/dota2/gameclient.py
 * ../games/dota2/items.py
 * ../games/dota2/match.py
 * ../games/dota2_test/gameclient.py
