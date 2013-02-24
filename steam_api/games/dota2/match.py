@@ -13,6 +13,16 @@ class IDOTA2Match_570(SteamWebAPI):
         self.interface = 'IDOTA2Match_570'
         super(IDOTA2Match_570, self).__init__()
 
+    def GetLeagueListing(self):
+        params = {}
+        return self.generate_api_url(self.interface, 'GetLeagueListing', 1,
+            params, key=True)
+
+    def GetLiveLeagueGames(self):
+        params = {}
+        return self.generate_api_url(self.interface, 'GetLiveLeagueGames', 1,
+            params, key=True)
+
     def GetMatchDetails(self, match_id):
         params = {
             'match_id': match_id,
@@ -39,4 +49,21 @@ class IDOTA2Match_570(SteamWebAPI):
             'tournament_games_only': tournament_games_only,
         }
         return self.generate_api_url(self.interface, 'GetMatchHistory', 1,
+            params, key=True)
+
+    def GetMatchHistoryBySequenceNum(self, start_at_match_seq_num,
+        matches_requested):
+        params = {
+            'start_at_match_seq_num': start_at_match_seq_num,
+            'matches_requested': matches_requested,
+        }
+        return self.generate_api_url(self.interface,
+            'GetMatchHistoryBySequenceNum', 1, params, key=True)
+
+    def GetTeamInfoByTeamID(self, start_at_team_id, teams_requested):
+        params = {
+            'start_at_team_id': start_at_team_id,
+            'teams_requested': teams_requested,
+        }
+        return self.generate_api_url(self.interface, 'GetTeamInfoByTeamID', 1,
             params, key=True)

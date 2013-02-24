@@ -54,7 +54,7 @@ class ISteamApps(SteamWebAPI):
     def GetAppList(self):
         params = {}
         return self.generate_api_url(self.interface, 'GetAppList', 2,
-            params, key=False)#['applist']['apps']
+            params, key=False)
 
     def GetServersAtAddress(self, addr):
         params = {

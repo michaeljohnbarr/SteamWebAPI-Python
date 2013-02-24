@@ -105,7 +105,7 @@ class ISteamUserStats(SteamWebAPI):
         return self.generate_api_url(self.interface,
             'GetNumberOfCurrentPlayers', 1, params)
 
-    def GetSchemaForGame(self, appid, l='en'):
+    def GetSchemaForGame(self, appid, l=''):
         params = {
             'appid': appid,
             'l': l,

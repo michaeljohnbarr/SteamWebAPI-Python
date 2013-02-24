@@ -28,13 +28,6 @@ class IEconDOTA2_570(SteamWebAPI):
         return self.generate_api_url(self.interface, 'GetRarities', 1,
             params, key=True)
 
-    def GetStoreSections(self, language=''):
-        params = {
-            'language': language,
-            }
-        return self.generate_api_url(self.interface, 'GetStoreSections', 1,
-            params, key=True)
-
     def GetTicketSaleStatus(self):
         params = {}
         return self.generate_api_url(self.interface, 'GetTicketSaleStatus', 1,
@@ -80,6 +73,18 @@ class IEconItems_570(SteamWebAPI):
             'language': language,
             }
         return self.generate_api_url(self.interface, 'GetSchema', 1,
+            params, key=True)
+
+    def GetSchemaURL(self):
+        params = {}
+        return self.generate_api_url(self.interface, 'GetSchemaURL', 1,
+            params, key=True)
+
+    def GetStoreMetaData(self, language=''):
+        params = {
+            'language': language,
+            }
+        return self.generate_api_url(self.interface, 'GetStoreMetaData', 1,
             params, key=True)
 
     def GetStoreStatus(self):

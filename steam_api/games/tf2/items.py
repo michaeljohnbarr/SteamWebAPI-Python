@@ -73,3 +73,20 @@ class IEconItems_440(SteamWebAPI):
             }
         return self.generate_api_url(self.interface, 'GetSchema', 1,
             params, key=True)
+
+    def GetSchemaURL(self):
+        params = {}
+        return self.generate_api_url(self.interface, 'GetSchemaURL', 1,
+            params, key=True)
+
+    def GetStoreMetaData(self, language=''):
+        params = {
+            'language': language,
+        }
+        return self.generate_api_url(self.interface, 'GetStoreMetaData', 1,
+            params, key=True)
+
+    def GetStoreStatus(self):
+        params = {}
+        return self.generate_api_url(self.interface, 'GetStoreStatus', 1,
+            params, key=True)
