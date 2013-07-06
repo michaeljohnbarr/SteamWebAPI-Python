@@ -4,41 +4,44 @@
 # Python Imports
 import urllib
 import urllib2
-import json
 
 # API Imports
-from settings import STEAM_API_KEY
-from settings import DEFAULT_LANGUAGE
+from settings import STEAM_API_KEY, DEFAULT_LANGUAGE
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
 class SteamWebAPI(object):
-    def __init__(self, key=STEAM_API_KEY, language=DEFAULT_LANGUAGE):
-        self.key = key
-        self.language = language
+    def __init__(self, key='', language=''):
+        self.key = key or STEAM_API_KEY
+        self.language = language or DEFAULT_LANGUAGE
+        self.interface = self.__class__.__name__
 
-    def generate_api_url(self, interface, method, version, params, format=None,
-        key=True):
+    def api_query(self, method, method_version, parameters, format=None, key=True):
         # Set version for the API URL
-        version = "v%04d" %version
+        version = "v%04d" % method_version
 
-        # Automatically add the API key
-        params.update({'key': self.key})
+        if key:
+            # Automatically add the API key
+            parameters.update({'key': self.key})
 
         # Update language to default if not set
-        if 'l' in params:
-            if not params['l']:
-                params.update({'l': self.language})
+        if 'l' in parameters:
+            if not parameters['l']:
+                parameters.update({'l': self.language})
 
-        if 'language' in params:
-            if not params['language']:
-                params.update({'language': self.language})
+        if 'language' in parameters:
+            if not parameters['language']:
+                parameters.update({'language': self.language})
 
         # Format the URL
-        url = 'http://api.steampowered.com/%s/%s/%s/?%s' % (interface, method,
-            version, urllib.urlencode(params))
+        url = 'http://api.steampowered.com/%s/%s/%s/?%s' % (
+            self.interface,
+            method,
+            version,
+            urllib.urlencode(parameters)
+        )
 
         # Return the APIQuery instance
         return APIQuery(url)
@@ -63,14 +66,14 @@ class APIQuery(object):
     """
     def __init__(self, url):
         self.url = url
-        
+
     def as_xml(self):
         self.url += '&format=xml'
         return urllib2.urlopen(self.url)
 
     def as_json(self):
         self.url += '&format=json'
-        return urllib2.urlopen(self.url)#json.load(urllib2.urlopen(url))
+        return urllib2.urlopen(self.url)
 
     def as_vdf(self):
         self.url += '&format=vdf'

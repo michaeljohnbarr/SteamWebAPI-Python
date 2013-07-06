@@ -9,13 +9,13 @@ from steam_api.api_base import SteamWebAPI
 # >> CLASSES
 # =============================================================================
 class IPortal2Leaderboards_620(SteamWebAPI):
-    def __init__(self):
-        self.interface = 'IPortal2Leaderboards_620'
-        super(IPortal2Leaderboards_620, self).__init__()
-
-    def GetBucketizedData(self, leaderboardName):
-        params = {
+    def GetBucketizedData(self, leaderboardName, **kwargs):
+        parameters = {
             'leaderboardName': leaderboardName,
-            }
-        return self.generate_api_url(self.interface, 'GetBucketizedData', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GetBucketizedData',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )

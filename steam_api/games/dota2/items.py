@@ -9,85 +9,113 @@ from steam_api.api_base import SteamWebAPI
 # >> CLASSES
 # =============================================================================
 class IEconDOTA2_570(SteamWebAPI):
-    def __init__(self):
-        self.interface = 'IEconDOTA2_570'
-        super(IEconDOTA2_570, self).__init__()
-
-    def GetHeroes(self, itemizedonly, language=''):
-        params = {
+    def GetHeroes(self, itemizedonly, language='', **kwargs):
+        parameters = {
             'language': language,
             'itemizedonly': bool(itemizedonly),
-            }
-        return self.generate_api_url(self.interface, 'GetHeroes', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GetHeroes',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
-    def GetRarities(self, language=''):
-        params = {
+    def GetRarities(self, language='', **kwargs):
+        parameters = {
             'language': language,
-            }
-        return self.generate_api_url(self.interface, 'GetRarities', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GetRarities',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
-    def GetTicketSaleStatus(self):
-        params = {}
-        return self.generate_api_url(self.interface, 'GetTicketSaleStatus', 1,
-            params, key=True)
+    def GetTicketSaleStatus(self, **kwargs):
+        parameters = {}
+        return self.generate_api_url(
+            method='GetTicketSaleStatus',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
 
 class ITFPromos_570(SteamWebAPI):
-    def __init__(self):
-        self.interface = 'ITFPromos_570'
-        super(ITFPromos_570, self).__init__()
-
-    def GetItemID(self, steamid, promoid):
-        params = {
+    def GetItemID(self, steamid, promoid, **kwargs):
+        parameters = {
             'steamid': steamid,
             'PromoID': promoid,
-            }
-        return self.generate_api_url(self.interface, 'GetItemID', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GetItemID',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
-    def GrantItem(self, steamid, promoid):
-        params = {
+    def GrantItem(self, steamid, promoid, **kwargs):
+        parameters = {
             'steamid': steamid,
             'PromoID': promoid,
-            }
-        return self.generate_api_url(self.interface, 'GrantItem', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GrantItem',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
 
 class IEconItems_570(SteamWebAPI):
-    def __init__(self):
-        self.interface = 'IEconItems_570'
-        super(IEconItems_570, self).__init__()
-
-    def GetPlayerItems(self, steamid):
-        params = {
+    def GetPlayerItems(self, steamid, **kwargs):
+        parameters = {
             'steamid': steamid,
-            }
-        return self.generate_api_url(self.interface, 'GetPlayerItems', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GetPlayerItems',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
-    def GetSchema(self, language=''):
-        params = {
+    def GetSchema(self, language='', **kwargs):
+        parameters = {
             'language': language,
-            }
-        return self.generate_api_url(self.interface, 'GetSchema', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GetSchema',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
-    def GetSchemaURL(self):
-        params = {}
-        return self.generate_api_url(self.interface, 'GetSchemaURL', 1,
-            params, key=True)
+    def GetSchemaURL(self, **kwargs):
+        parameters = {}
+        return self.generate_api_url(
+            method='GetSchemaURL',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
-    def GetStoreMetaData(self, language=''):
-        params = {
+    def GetStoreMetaData(self, language='', **kwargs):
+        parameters = {
             'language': language,
-            }
-        return self.generate_api_url(self.interface, 'GetStoreMetaData', 1,
-            params, key=True)
+        }
+        return self.generate_api_url(
+            method='GetStoreMetaData',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
 
-    def GetStoreStatus(self):
-        params = {}
-        return self.generate_api_url(self.interface, 'GetStoreStatus', 1,
-            params, key=True)
+    def GetStoreStatus(self, **kwargs):
+        parameters = {}
+        return self.generate_api_url(
+            method='GetStoreStatus',
+            version=kwargs.get('version', 1),
+            parameters=parameters,
+            key=True
+        )
