@@ -6,48 +6,83 @@ import urllib
 import urllib2
 
 # API Imports
-from settings import STEAM_API_KEY, DEFAULT_LANGUAGE
+from settings import STEAM_API_KEY, DEFAULT_LANGUAGE, DEFAULT_FORMAT
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
 class SteamWebAPI(object):
-    def __init__(self, key='', language=''):
+    def __init__(self, key='', language='', format=''):
         self.key = key or STEAM_API_KEY
         self.language = language or DEFAULT_LANGUAGE
-        self.interface = self.__class__.__name__
+        self.format = format.lower() or DEFAULT_FORMAT.lower()
 
-    def api_query(self, method, method_version, parameters, format=None, key=True):
-        # Set version for the API URL
-        version = "v%04d" % method_version
+    def api_query(self, *args, **kwargs):
+        """Returns an APIQuery instance of the method that was passed in, or an
+        executed APIQuery if a default format is specified.
 
-        if key:
-            # Automatically add the API key
-            parameters.update({'key': self.key})
+        """
+        if not self.format:
+            # Return the APIQuery instance
+            return APIQuery(*args, **kwargs)
 
-        # Update language to default if not set
-        if 'l' in parameters:
-            if not parameters['l']:
-                parameters.update({'l': self.language})
+        # Return an executed APIQuery call with the format of their choice
+        return APIQuery(*args, **kwargs).__getattribute__(self.format)
 
-        if 'language' in parameters:
-            if not parameters['language']:
-                parameters.update({'language': self.language})
 
-        # Format the URL
-        url = 'http://api.steampowered.com/%s/%s/%s/?%s' % (
-            self.interface,
-            method,
-            version,
-            urllib.urlencode(parameters)
+class APIMethod(object):
+    def __init__(self, method, method_version=1, httpmethod='GET', params={}):
+        self._parameters = params
+        self._version = 'v{0:04d}'.format(method_version)
+        self._interface = self.__class__.__name__
+        self._method = method
+        self._httpmethod = str(httpmethod).upper()
+        self._url = self._encode_url()
+
+    def _encode_url(self):
+        """Formats the URL for the call via the Steam Web API."""
+        return 'http://api.steampowered.com/{0}/{1}/{2}/?{3}'.format(
+            self._interface,
+            self._method,
+            self._version,
+            urllib.urlencode(self._parameters)
         )
 
-        # Return the APIQuery instance
-        return APIQuery(url)
+    @property
+    def interface(self):
+        """Returns private variable interface."""
+        return self._interface
+
+    @property
+    def method(self):
+        """Returns private variable method."""
+        return self._method
+
+    @property
+    def version(self):
+        """Returns private variable version."""
+        return self._version
+
+    @property
+    def httpmethod(self):
+        """Returns private variable httpmethod."""
+        return self._httpmethod
+
+    @property
+    def url(self):
+        """Returns private variable url."""
+        # We format the URL before returning it in case a parameter was changed
+        self._encode_url()
+        return self._url
+
+    @property
+    def parameters(self):
+        """Returns private variable parameters."""
+        return self._parameters
 
 
-class APIQuery(object):
+class APIQuery(APIMethod):
     """Utility class for returning data in either raw JSON, XML, or VDF format
     as queried from urllib2.urlopen(API_URL) via any interface method.
 
@@ -64,8 +99,8 @@ class APIQuery(object):
         return_vdf = iSteamUser.GetFriendList(steamid).vdf
 
     """
-    def __init__(self, url):
-        self.url = url
+    def __init__(self, *args, **kwargs):
+        super(self, APIQuery).__init__(*args, **kwargs)
 
     def as_xml(self):
         self.url += '&format=xml'

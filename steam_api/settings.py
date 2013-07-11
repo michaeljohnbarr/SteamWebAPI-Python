@@ -43,4 +43,4 @@ DEFAULT_LANGUAGE = 'en'
 #       json (JavaScript Object Notation Format)
 #       xml (Standard XML)
 #       vdf (Valve Data Format)
-DEFAULT_FILE_FORMAT = 'json'
+DEFAULT_FORMAT = ''

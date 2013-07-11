@@ -17,7 +17,8 @@ class ISteamUser(SteamWebAPI):
         """
         parameters = {
             'steamid': steamid,
-            'relationship': relationship
+            'relationship': relationship,
+            'key': self.key,
         }
         # According to http://wiki.teamfortress.com/wiki/WebAPI/GetFriendList,
         #   "If the profile is not public or there are no available entries for
@@ -25,10 +26,11 @@ class ISteamUser(SteamWebAPI):
         #   However, this is not the case. It gives a 401 Unauthorized
         #   HTTPError. Thus, we must create this workaround.
         try:
-            return self.generate_api_url(
+            return self.api_query(
                 method='GetFriendList',
+                httpmethod='GET',
                 version=kwargs.get('method_version', 1),
-                parameters=parameters
+                params=parameters
             )
         except HTTPError, e:
             # The expected 401 Unauthorized Error
@@ -44,11 +46,13 @@ class ISteamUser(SteamWebAPI):
             ",".join(steamids)
         parameters = {
             'steamids': steamids,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetPlayerBans',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
     def GetPlayerSummaries(self, steamids=[], **kwargs):
@@ -58,31 +62,37 @@ class ISteamUser(SteamWebAPI):
             ",".join(steamids)
         parameters = {
             'steamids': steamids,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetPlayerSummaries',
+            httpmethod='GET',
             version=kwargs.get('method_version', 2),
-            parameters=parameters
+            params=parameters
         )
 
     def GetUserGroupList(self, steamid, **kwargs):
         parameters = {
             'steamid': steamid,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetUserGroupList',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
     def ResolveVanityURL(self, vanityURL, **kwargs):
         parameters = {
             'vanityurl': vanityURL,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='ResolveVanityURL',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
 
@@ -91,10 +101,11 @@ class ISteamUserStats(SteamWebAPI):
         parameters = {
             'gameid': gameid,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetGlobalAchievementPercentagesForApp',
+            httpmethod='GET',
             version=kwargs.get('method_version', 2),
-            parameters=parameters
+            params=parameters
         )
 
     def GetGlobalStatsForGame(self, appid, count, startdate, enddate, **kwargs):
@@ -105,32 +116,36 @@ class ISteamUserStats(SteamWebAPI):
             'enddate': enddate,
         }
         parameters.extend(kwargs)  # TODO: Figure out a way to handle name[0]...
-        return self.generate_api_url(
+        return self.api_query(
             method='GetGlobalStatsForGame',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
     def GetNumberOfCurrentPlayers(self, appid, **kwargs):
         parameters = {
             'appid': appid,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetNumberOfCurrentPlayers',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
     def GetSchemaForGame(self, appid, l='', **kwargs):
         """Retrieves the game schema for the given appid."""
         parameters = {
             'appid': appid,
-            'l': l,
+            'l': l or self.language,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetSchemaForGame',
+            httpmethod='GET',
             version=kwargs.get('method_version', 2),
-            parameters=parameters
+            params=parameters
         )
 
     def GetUserStatsForGame(self, steamid, appid, **kwargs):
@@ -138,11 +153,13 @@ class ISteamUserStats(SteamWebAPI):
         parameters = {
             'steamid': steamid,
             'appid': appid,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetUserStatsForGame',
+            httpmethod='GET',
             version=kwargs.get('method_version', 2),
-            parameters=parameters
+            params=parameters
         )
 
     def GetPlayerAchievements(self, steamid, appid, l='', **kwargs):
@@ -150,12 +167,14 @@ class ISteamUserStats(SteamWebAPI):
         parameters = {
             'steamid': steamid,
             'appid': appid,
-            'l': l,
+            'l': l or self.language,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetPlayerAchievements',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
 
@@ -168,11 +187,13 @@ class IPlayerService(SteamWebAPI):
         parameters = {
             'steamid': steamid,
             'count': count,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetPlayerAchievements',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
     def GetOwnedGames(self, steamid, include_appinfo=True,
@@ -188,31 +209,37 @@ class IPlayerService(SteamWebAPI):
             'include_appinfo': include_appinfo,
             'include_played_free_games': include_played_free_games,
             'appids_filter': appids_filter,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetOwnedGames',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
     def GetSteamLevel(self, steamid, **kwargs):
         """Retrieves the Steam Level for the given SteamID."""
         parameters = {
             'steamid': steamid,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetSteamLevel',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
 
     def GetBadges(self, steamid, **kwargs):
         """Retrieves badge information for the given SteamID."""
         parameters = {
             'steamid': steamid,
+            'key': self.key,
         }
-        return self.generate_api_url(
+        return self.api_query(
             method='GetBadges',
+            httpmethod='GET',
             version=kwargs.get('method_version', 1),
-            parameters=parameters
+            params=parameters
         )
