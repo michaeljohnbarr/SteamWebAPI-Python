@@ -16,7 +16,7 @@ class ISteamEconomy(SteamWebAPI):
 
     def __init__(self, *args, **kwargs):
         """Initialize SteamWebAPI."""
-        super(self, ISteamEconomy).__init__(*args, **kwargs)
+        super(ISteamEconomy, self).__init__(*args, **kwargs)
 
     def GetAssetPrices(self, appid, currency='usd', language='',
                        method_version=1):
@@ -35,6 +35,7 @@ class ISteamEconomy(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamEconomy',
             method='GetAssetPrices',
             method_version=method_version,
             httpmethod='GET',
@@ -72,6 +73,7 @@ class ISteamEconomy(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamEconomy',
             method='GetAssetClassInfo',
             method_version=method_version,
             httpmethod='GET',
@@ -84,7 +86,7 @@ class ISteamGameServerAccount(SteamWebAPI):
 
     def __init__(self, *args, **kwargs):
         """Initialize SteamWebAPI."""
-        super(self, ISteamGameServerAccount).__init__(*args, **kwargs)
+        super(ISteamGameServerAccount, self).__init__(*args, **kwargs)
 
     def GetAccountPublicInfoBySteamID(self, steamid, method_version=1):
         """Retrieves information when given a game server's steamid.
@@ -103,6 +105,7 @@ class ISteamGameServerAccount(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamGameServerAccount',
             method='GetAccountPublicInfoBySteamID',
             method_version=method_version,
             httpmethod='GET',
@@ -115,7 +118,7 @@ class ISteamApps(SteamWebAPI):
 
     def __init__(self, *args, **kwargs):
         """Initialize SteamWebAPI."""
-        super(self, ISteamApps).__init__(*args, **kwargs)
+        super(ISteamApps, self).__init__(*args, **kwargs)
 
     def GetAppList(self, method_version=1):
         """Returns a full list of every publicly facing program in the
@@ -129,6 +132,7 @@ class ISteamApps(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamApps',
             method='GetAppList',
             method_version=method_version,
             httpmethod='GET',
@@ -152,6 +156,7 @@ class ISteamApps(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamApps',
             method='GetServersAtAddress',
             method_version=method_version,
             httpmethod='GET',
@@ -171,6 +176,7 @@ class ISteamApps(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamApps',
             method='UpToDateCheck',
             method_version=method_version,
             httpmethod='GET',
@@ -183,7 +189,7 @@ class ISteamNews(SteamWebAPI):
 
     def __init__(self, *args, **kwargs):
         """Initialize SteamWebAPI."""
-        super(self, ISteamNews).__init__(*args, **kwargs)
+        super(ISteamNews, self).__init__(*args, **kwargs)
 
     def GetNewsForApp(self, appid, maxlength='', enddate='', count='',
                       feeds='', method_version=2):
@@ -203,6 +209,7 @@ class ISteamNews(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamNews',
             method='GetNewsForApp',
             method_version=method_version,
             httpmethod='GET',
@@ -215,7 +222,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
 
     def __init__(self, *args, **kwargs):
         """Initialize SteamWebAPI."""
-        super(self, ISteamWebAPIUtil).__init__(*args, **kwargs)
+        super(ISteamWebAPIUtil, self).__init__(*args, **kwargs)
 
     def GetServerInfo(self, method_version=1):
         """Retrieves the Steam Web API server's time information
@@ -228,6 +235,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamWebAPIUtil',
             method='GetServerInfo',
             method_version=method_version,
             httpmethod='GET',
@@ -251,6 +259,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
+            interface='ISteamWebAPIUtil',
             method='GetSupportedAPIList',
             method_version=method_version,
             httpmethod='GET',
