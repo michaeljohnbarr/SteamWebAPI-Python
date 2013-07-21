@@ -2,15 +2,15 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from ..common.match import BaseIDOTA2Match
+from ..common.gameclient import IGCVersion
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IDOTA2Match_570(BaseIDOTA2Match):
-    """Methods relating to Dota 2 matches."""
+class IGCVersion_570(IGCVersion):
+    """Methods for retrieving DOTA2 version information."""
 
     def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(IDOTA2Match_570, self).__init__(*args, **kwargs)
+        """Initialize IGCVersion, which initializes SteamWebAPI."""
+        super(IGCVersion_570, self).__init__(*args, **kwargs)

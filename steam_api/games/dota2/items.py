@@ -2,120 +2,28 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from steam_api.api_base import SteamWebAPI
+from ..common.items import BaseITFPromos, BaseIEconDOTA2, IEconItems
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IEconDOTA2_570(SteamWebAPI):
-    def GetHeroes(self, itemizedonly, language='', **kwargs):
-        parameters = {
-            'language': language,
-            'itemizedonly': bool(itemizedonly),
-        }
-        return self.generate_api_url(
-            method='GetHeroes',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetRarities(self, language='', **kwargs):
-        parameters = {
-            'language': language,
-        }
-        return self.generate_api_url(
-            method='GetRarities',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetTicketSaleStatus(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetTicketSaleStatus',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class IEconDOTA2_570(BaseIEconDOTA2):
+    """Methods relating to in-game items for DOTA2."""
+    def __init__(self, *args, **kwargs):
+        """Initialize BaseIEconDOTA2, which initializes SteamWebAPI."""
+        super(IEconDOTA2_570, self).__init__(*args, **kwargs)
 
 
-class ITFPromos_570(SteamWebAPI):
-    def GetItemID(self, steamid, promoid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-            'PromoID': promoid,
-        }
-        return self.generate_api_url(
-            method='GetItemID',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GrantItem(self, steamid, promoid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-            'PromoID': promoid,
-        }
-        return self.generate_api_url(
-            method='GrantItem',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class ITFPromos_570(BaseITFPromos):
+    """Methods for retrieving and granting promo items for DOTA2."""
+    def __init__(self, *args, **kwargs):
+        """Initialize BaseITFPromos, which initializes SteamWebAPI."""
+        super(ITFPromos_570, self).__init__(*args, **kwargs)
 
 
-class IEconItems_570(SteamWebAPI):
-    def GetPlayerItems(self, steamid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-        }
-        return self.generate_api_url(
-            method='GetPlayerItems',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetSchema(self, language='', **kwargs):
-        parameters = {
-            'language': language,
-        }
-        return self.generate_api_url(
-            method='GetSchema',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetSchemaURL(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetSchemaURL',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetStoreMetaData(self, language='', **kwargs):
-        parameters = {
-            'language': language,
-        }
-        return self.generate_api_url(
-            method='GetStoreMetaData',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetStoreStatus(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetStoreStatus',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class IEconItems_570(IEconItems):
+    """Methods relating to in-game items for DOTA2."""
+    def __init__(self, *args, **kwargs):
+        """Initialize BaseITFPromos, which initializes SteamWebAPI."""
+        super(IEconItems_570, self).__init__(*args, **kwargs)

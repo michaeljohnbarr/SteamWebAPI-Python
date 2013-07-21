@@ -48,7 +48,8 @@ class APIQuery(object):
         return_vdf = iSteamUser.GetFriendList(steamid).vdf
 
     """
-    def __init__(self, interface, method, method_version=1, httpmethod='GET', params={}):
+    def __init__(self, interface, method, method_version=1, httpmethod='GET',
+                 params={}):
         self._interface = interface
         self._method = method
         self._version = 'v{0:04d}'.format(method_version)
@@ -89,26 +90,13 @@ class APIQuery(object):
     def url(self):
         """Returns private variable url."""
         # We format the URL before returning it in case a parameter was changed
-        self._encode_url()
+        self._url = self._encode_url()
         return self._url
 
     @property
     def parameters(self):
         """Returns private variable parameters."""
         return self._parameters
-
-    def as_xml(self):
-        self._url += '&format=xml'
-        return urllib2.urlopen(self._url)
-
-    def as_json(self):
-        self._url += '&format=json'
-        print self._url
-        return urllib2.urlopen(self._url)
-
-    def as_vdf(self):
-        self._url += '&format=vdf'
-        return urllib2.urlopen(self._url)
 
     @property
     def xml(self):
@@ -121,3 +109,15 @@ class APIQuery(object):
     @property
     def vdf(self):
         return self.as_vdf()
+
+    def as_xml(self):
+        self._url += '&format=xml'
+        return urllib2.urlopen(self._url)
+
+    def as_json(self):
+        self._url += '&format=json'
+        return urllib2.urlopen(self._url)
+
+    def as_vdf(self):
+        self._url += '&format=vdf'
+        return urllib2.urlopen(self._url)

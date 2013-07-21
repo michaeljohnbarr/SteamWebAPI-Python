@@ -1,4 +1,4 @@
-# Documentation taken from http://wiki.teamfortress.com/wiki/WebAPI
+# Documentation mostly attributed to http://wiki.teamfortress.com/wiki/WebAPI
 
 # Your Steam API Key as requested from
 #   https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey
@@ -43,4 +43,8 @@ DEFAULT_LANGUAGE = 'en'
 #       json (JavaScript Object Notation Format)
 #       xml (Standard XML)
 #       vdf (Valve Data Format)
+# In this package, if a default format is supplied, the APIQuery class will
+#   automatically execute the urllib2 call to the API and return the
+#   urllib2.urlopen() result. If no default format is supplied, the APIQuery
+#   object will be returned.
 DEFAULT_FORMAT = ''

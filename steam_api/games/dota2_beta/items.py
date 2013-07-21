@@ -8,22 +8,22 @@ from ..common.items import BaseITFPromos, BaseIEconDOTA2, IEconItems
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IEconDOTA2_205790(BaseIEconDOTA2):
-    """Methods relating to in-game items for DOTA2 Test."""
+class IEconDOTA2_816(BaseIEconDOTA2):
+    """Methods relating to in-game items for DOTA2 Beta."""
     def __init__(self, *args, **kwargs):
         """Initialize BaseIEconDOTA2, which initializes SteamWebAPI."""
-        super(IEconDOTA2_205790, self).__init__(*args, **kwargs)
+        super(IEconDOTA2_816, self).__init__(*args, **kwargs)
 
 
-class ITFPromos_205790(BaseITFPromos):
-    """Methods for retrieving and granting promo items for Dota2 Test."""
+class ITFPromos_816(BaseITFPromos):
+    """Methods for retrieving and granting promo items for Dota2 Beta."""
     def __init__(self, *args, **kwargs):
         """Initialize BaseITFPromos, which initializes SteamWebAPI."""
-        super(ITFPromos_205790, self).__init__(*args, **kwargs)
+        super(ITFPromos_816, self).__init__(*args, **kwargs)
 
 
-class IEconItems_205790(IEconItems):
-    """Methods relating to in-game items for Dota2 Test."""
+class IEconItems_816(IEconItems):
+    """Methods relating to in-game items for Dota2 Beta."""
     def __init__(self, *args, **kwargs):
         """Initialize IEconItems, which initializes SteamWebAPI."""
-        super(IEconItems_205790, self).__init__(*args, **kwargs)
+        super(IEconItems_816, self).__init__(*args, **kwargs)

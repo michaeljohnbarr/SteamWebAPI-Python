@@ -8,9 +8,9 @@ from ..common.match import BaseIDOTA2Match
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IDOTA2Match_570(BaseIDOTA2Match):
-    """Methods relating to Dota 2 matches."""
+class IDOTA2Match_816(BaseIDOTA2Match):
+    """Methods relating to Dota 2 Beta matches."""
 
     def __init__(self, *args, **kwargs):
         """Initialize SteamWebAPI."""
-        super(IDOTA2Match_570, self).__init__(*args, **kwargs)
+        super(IDOTA2Match_816, self).__init__(*args, **kwargs)

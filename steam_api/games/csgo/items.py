@@ -2,57 +2,21 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from steam_api.api_base import SteamWebAPI
+from ..common.items import BaseITFPromos, ExtendedIEconItems
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class ITFPromos_730(SteamWebAPI):
-    def GetItemID(self, steamid, promoid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-            'PromoID': promoid,
-        }
-        return self.generate_api_url(
-            method='GetItemID',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GrantItem(self, steamid, promoid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-            'PromoID': promoid,
-        }
-        return self.generate_api_url(
-            method='GrantItem',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class ITFPromos_730(BaseITFPromos):
+    """Methods for retrieving and granting promo items for CS:GO."""
+    def __init__(self, *args, **kwargs):
+        """Initialize BaseITFPromos, which initializes SteamWebAPI."""
+        super(ITFPromos_730, self).__init__(*args, **kwargs)
 
 
-class IEconItems_730(SteamWebAPI):
-    def GetPlayerItems(self, steamid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-        }
-        return self.generate_api_url(
-            method='GetPlayerItems',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetSchema(self, language='', **kwargs):
-        parameters = {
-            'language': language,
-        }
-        return self.generate_api_url(
-            method='GetSchema',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class IEconItems_730(ExtendedIEconItems):
+    """Methods relating to in-game items for CS:GO."""
+    def __init__(self, *args, **kwargs):
+        """Initialize ExtendedIEconItems, which initializes SteamWebAPI."""
+        super(IEconItems_730, self).__init__(*args, **kwargs)

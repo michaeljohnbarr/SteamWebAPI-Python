@@ -2,36 +2,15 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from steam_api.api_base import SteamWebAPI
+from ..common.items import IGCVersion
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IGCVersion_570(SteamWebAPI):
-    def GetClientVersion(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetClientVersion',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class IGCVersion_570(IGCVersion):
+    """Methods for retrieving DOTA2 version information."""
 
-    def GetClusterVersion(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetClusterVersion',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetServerVersion(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetServerVersion',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+    def __init__(self, *args, **kwargs):
+        """Initialize IGCVersion, which initializes SteamWebAPI."""
+        super(IGCVersion_570, self).__init__(*args, **kwargs)

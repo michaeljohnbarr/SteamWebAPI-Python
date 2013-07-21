@@ -35,7 +35,7 @@ class ISteamEconomy(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamEconomy',
+            interface=self.__class__.__name__,
             method='GetAssetPrices',
             method_version=method_version,
             httpmethod='GET',
@@ -73,7 +73,7 @@ class ISteamEconomy(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamEconomy',
+            interface=self.__class__.__name__,
             method='GetAssetClassInfo',
             method_version=method_version,
             httpmethod='GET',
@@ -105,7 +105,7 @@ class ISteamGameServerAccount(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamGameServerAccount',
+            interface=self.__class__.__name__,
             method='GetAccountPublicInfoBySteamID',
             method_version=method_version,
             httpmethod='GET',
@@ -132,7 +132,7 @@ class ISteamApps(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamApps',
+            interface=self.__class__.__name__,
             method='GetAppList',
             method_version=method_version,
             httpmethod='GET',
@@ -156,7 +156,7 @@ class ISteamApps(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamApps',
+            interface=self.__class__.__name__,
             method='GetServersAtAddress',
             method_version=method_version,
             httpmethod='GET',
@@ -176,7 +176,7 @@ class ISteamApps(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamApps',
+            interface=self.__class__.__name__,
             method='UpToDateCheck',
             method_version=method_version,
             httpmethod='GET',
@@ -209,7 +209,7 @@ class ISteamNews(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamNews',
+            interface=self.__class__.__name__,
             method='GetNewsForApp',
             method_version=method_version,
             httpmethod='GET',
@@ -235,7 +235,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamWebAPIUtil',
+            interface=self.__class__.__name__,
             method='GetServerInfo',
             method_version=method_version,
             httpmethod='GET',
@@ -259,7 +259,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
 
         # Return the APIQuery
         return self.api_query(
-            interface='ISteamWebAPIUtil',
+            interface=self.__class__.__name__,
             method='GetSupportedAPIList',
             method_version=method_version,
             httpmethod='GET',

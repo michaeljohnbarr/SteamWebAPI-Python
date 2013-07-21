@@ -2,97 +2,44 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from steam_api.api_base import SteamWebAPI
+from ...api_base import SteamWebAPI
+from ..common.items import BaseITFPromos, ExtendedIEconItems
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class ITFPromos_440(SteamWebAPI):
-    def GetItemID(self, steamid, promoid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-            'PromoID': promoid,
-        }
-        return self.generate_api_url(
-            method='GetItemID',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class ITFPromos_440(BaseITFPromos):
+    """Methods for retrieving and granting promo items for TF2."""
+    def __init__(self, *args, **kwargs):
+        """Initialize BaseITFPromos, which initializes SteamWebAPI."""
+        super(ITFPromos_440, self).__init__(*args, **kwargs)
 
-    def GrantItem(self, steamid, promoid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-            'PromoID': promoid,
-        }
-        return self.generate_api_url(
-            method='GrantItem',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+
+class IEconItems_440(ExtendedIEconItems):
+    """Methods relating to in-game items for TF2."""
+    def __init__(self, *args, **kwargs):
+        """Initialize ExtendedIEconItems, which initializes SteamWebAPI."""
+        super(IEconItems_440, self).__init__(*args, **kwargs)
 
 
 class ITFItems_440(SteamWebAPI):
-    def GetGoldenWrenches(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
+    """Contains method for retrieving Golden Wrenches for TF2."""
+    def __init__(self, *args, **kwargs):
+        """Initialize SteamWebAPI."""
+        super(ITFPromos_440, self).__init__(*args, **kwargs)
+
+    def GetGoldenWrenches(self, method_version=2):
+        """Retrieves a list of all owners of golden wrenches."""
+        # Set up the parameters
+        parameters = {
+            'key': self.key,
+        }
+
+        return self.api_query(
+            interface=self.__class__.__name__,
             method='GetGoldenWrenches',
-            version=kwargs.get('version', 2),
-            parameters=parameters,
-            key=True
-        )
-
-
-class IEconItems_440(SteamWebAPI):
-    def GetPlayerItems(self, steamid, **kwargs):
-        parameters = {
-            'steamid': steamid,
-        }
-        return self.generate_api_url(
-            method='GetPlayerItems',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetSchema(self, language='', **kwargs):
-        parameters = {
-            'language': language,
-        }
-        return self.generate_api_url(
-            method='GetSchema',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetSchemaURL(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetSchemaURL',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetStoreMetaData(self, language='', **kwargs):
-        parameters = {
-            'language': language,
-        }
-        return self.generate_api_url(
-            method='GetStoreMetaData',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
-
-    def GetStoreStatus(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetStoreStatus',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
+            method_version=method_version,
+            httpmethod='GET',
+            params=parameters,
         )
