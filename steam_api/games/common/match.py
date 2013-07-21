@@ -27,7 +27,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             method='GetLeagueListing',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetLiveLeagueGames(self, method_version=1):
@@ -42,7 +42,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             method='GetLiveLeagueGames',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetMatchDetails(self, match_id, method_version=1):
@@ -58,7 +58,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             method='GetMatchDetails',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetMatchHistory(self, player_name=None, hero_id=None, game_mode=None,
@@ -89,7 +89,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             method='GetMatchHistory',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetMatchHistoryBySequenceNum(self, start_at_match_seq_num,
@@ -107,7 +107,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             method='GetMatchHistoryBySequenceNum',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetTeamInfoByTeamID(self, start_at_team_id, teams_requested,
@@ -125,5 +125,5 @@ class BaseIDOTA2Match(SteamWebAPI):
             method='GetTeamInfoByTeamID',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )

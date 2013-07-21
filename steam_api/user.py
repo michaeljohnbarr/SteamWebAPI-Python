@@ -32,7 +32,7 @@ class ISteamUser(SteamWebAPI):
                 method='GetFriendList',
                 method_version=method_version,
                 httpmethod='GET',
-                params=parameters,
+                parameters=parameters,
             )
         except HTTPError, e:
             # The expected 401 Unauthorized Error
@@ -58,7 +58,7 @@ class ISteamUser(SteamWebAPI):
             method='GetPlayerBans',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetPlayerSummaries(self, steamids=[], method_version=2):
@@ -79,7 +79,7 @@ class ISteamUser(SteamWebAPI):
             method='GetPlayerSummaries',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetUserGroupList(self, steamid, method_version=1):
@@ -95,7 +95,7 @@ class ISteamUser(SteamWebAPI):
             method='GetUserGroupList',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def ResolveVanityURL(self, vanityURL, method_version=1):
@@ -111,7 +111,7 @@ class ISteamUser(SteamWebAPI):
             method='ResolveVanityURL',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -129,7 +129,7 @@ class ISteamUserStats(SteamWebAPI):
             method='GetGlobalAchievementPercentagesForApp',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetGlobalStatsForGame(self, appid, count, startdate, enddate,
@@ -156,7 +156,7 @@ class ISteamUserStats(SteamWebAPI):
             method='GetGlobalStatsForGame',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetNumberOfCurrentPlayers(self, appid, method_version=1):
@@ -171,7 +171,7 @@ class ISteamUserStats(SteamWebAPI):
             method='GetNumberOfCurrentPlayers',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetSchemaForGame(self, appid, l='', method_version=2):
@@ -188,7 +188,7 @@ class ISteamUserStats(SteamWebAPI):
             method='GetSchemaForGame',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetUserStatsForGame(self, steamid, appid, method_version=2):
@@ -205,7 +205,7 @@ class ISteamUserStats(SteamWebAPI):
             method='GetSchemaForGame',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetPlayerAchievements(self, steamid, appid, l='', method_version=1):
@@ -223,7 +223,7 @@ class ISteamUserStats(SteamWebAPI):
             method='GetPlayerAchievements',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -246,7 +246,7 @@ class IPlayerService(SteamWebAPI):
             method='GetRecentlyPlayedGames',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetOwnedGames(self, steamid, include_appinfo=True,
@@ -272,7 +272,7 @@ class IPlayerService(SteamWebAPI):
             method='GetOwnedGames',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetSteamLevel(self, steamid, method_version=1):
@@ -288,7 +288,7 @@ class IPlayerService(SteamWebAPI):
             method='GetSteamLevel',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetBadges(self, steamid, method_version=1):
@@ -304,5 +304,5 @@ class IPlayerService(SteamWebAPI):
             method='GetBadges',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )

@@ -2,20 +2,15 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from steam_api.api_base import SteamWebAPI
+from ..common.leaderboards import IPortal2Leaderboards
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IPortal2Leaderboards_841(SteamWebAPI):
-    def GetBucketizedData(self, leaderboardName, **kwargs):
-        parameters = {
-            'leaderboardName': leaderboardName,
-        }
-        return self.generate_api_url(
-            method='GetBucketizedData',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class IPortal2Leaderboards_841(IPortal2Leaderboards):
+    """Methods relating to Portal 2 Beta Leaderboards."""
+
+    def __init__(self, *args, **kwargs):
+        """Initialize IPortal2Leaderboards, which initiales SteamWebAPI."""
+        super(IPortal2Leaderboards_841, self).__init__(*args, **kwargs)

@@ -25,7 +25,7 @@ class BaseIGCVersion(SteamWebAPI):
             method='GetClientVersion',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetServerVersion(self, method_version=1):
@@ -38,7 +38,7 @@ class BaseIGCVersion(SteamWebAPI):
             method='GetServerVersion',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -59,5 +59,5 @@ class IGCVersion(BaseIGCVersion):
             method='GetClusterVersion',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )

@@ -13,14 +13,16 @@ from settings import STEAM_API_KEY, DEFAULT_LANGUAGE, DEFAULT_FORMAT
 # >> CLASSES
 # ==============================================================================
 class SteamWebAPI(object):
-    def __init__(self, key='', language='', format=''):
-        self.key = key or STEAM_API_KEY
-        self.language = language or DEFAULT_LANGUAGE
-        self.format = format.lower() or DEFAULT_FORMAT.lower()
+    def __init__(self, key=STEAM_API_KEY, language=DEFAULT_LANGUAGE,
+                 format=DEFAULT_FORMAT):
+        self.key = key
+        self.language = language
+        self.format = format.lower()
 
     def api_query(self, *args, **kwargs):
         """Returns an APIQuery instance of the method that was passed in, or an
-        executed APIQuery if a default format is specified.
+        executed APIQuery that returns urllib2.urlopen() if a default format is
+        specified.
 
         """
         if not self.format:
@@ -49,7 +51,7 @@ class APIQuery(object):
 
     """
     def __init__(self, interface, method, method_version=1, httpmethod='GET',
-                 params={}):
+                 parameters={}):
         self._interface = interface
         self._method = method
         self._version = 'v{0:04d}'.format(method_version)

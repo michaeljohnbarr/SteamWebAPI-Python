@@ -22,7 +22,7 @@ class BaseITFPromos(SteamWebAPI):
             method='GetItemID',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GrantItem(self, steamid, promoid, method_version=1):
@@ -39,7 +39,7 @@ class BaseITFPromos(SteamWebAPI):
             method='GrantItem',
             method_version=method_version,
             httpmethod='POST',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -63,7 +63,7 @@ class BaseIEconItems(SteamWebAPI):
             method='GetPlayerItems',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetSchema(self, language='', method_version=1):
@@ -79,7 +79,7 @@ class BaseIEconItems(SteamWebAPI):
             method='GetSchema',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -100,7 +100,7 @@ class IEconItems(BaseIEconItems):
             method='GetSchemaURL',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetStoreMetaData(self, language='', method_version=1):
@@ -116,7 +116,7 @@ class IEconItems(BaseIEconItems):
             method='GetStoreMetaData',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -138,7 +138,7 @@ class ExtendedIEconItems(IEconItems):
             method='GetStoreMetaData',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -164,7 +164,7 @@ class BaseIEconDOTA2(SteamWebAPI):
             method='GetHeroes',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetRarities(self, language='', method_version=1):
@@ -181,7 +181,7 @@ class BaseIEconDOTA2(SteamWebAPI):
             method='GetRarities',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetTournamentPrizePool(self, method_version=1):
@@ -197,5 +197,5 @@ class BaseIEconDOTA2(SteamWebAPI):
             method='GetTournamentPrizePool',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )

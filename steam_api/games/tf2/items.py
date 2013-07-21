@@ -41,5 +41,5 @@ class ITFItems_440(SteamWebAPI):
             method='GetGoldenWrenches',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )

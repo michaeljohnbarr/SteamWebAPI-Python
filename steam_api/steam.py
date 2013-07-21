@@ -39,7 +39,7 @@ class ISteamEconomy(SteamWebAPI):
             method='GetAssetPrices',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetAssetClassInfo(self, appid, class_count, language='',
@@ -77,7 +77,7 @@ class ISteamEconomy(SteamWebAPI):
             method='GetAssetClassInfo',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -109,7 +109,7 @@ class ISteamGameServerAccount(SteamWebAPI):
             method='GetAccountPublicInfoBySteamID',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -136,7 +136,7 @@ class ISteamApps(SteamWebAPI):
             method='GetAppList',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetServersAtAddress(self, addr, method_version=1):
@@ -160,7 +160,7 @@ class ISteamApps(SteamWebAPI):
             method='GetServersAtAddress',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def UpToDateCheck(self, appid, version, method_version=1):
@@ -180,7 +180,7 @@ class ISteamApps(SteamWebAPI):
             method='UpToDateCheck',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -213,7 +213,7 @@ class ISteamNews(SteamWebAPI):
             method='GetNewsForApp',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
 
@@ -239,7 +239,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
             method='GetServerInfo',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
 
     def GetSupportedAPIList(self, key='', method_version=1):
@@ -263,5 +263,5 @@ class ISteamWebAPIUtil(SteamWebAPI):
             method='GetSupportedAPIList',
             method_version=method_version,
             httpmethod='GET',
-            params=parameters,
+            parameters=parameters,
         )
