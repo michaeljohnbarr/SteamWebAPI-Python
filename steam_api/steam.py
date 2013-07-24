@@ -265,3 +265,83 @@ class ISteamWebAPIUtil(SteamWebAPI):
             httpmethod='GET',
             parameters=parameters,
         )
+
+
+class ISteamRemoteStorage(SteamWebAPI):
+    """Methods relating to Steam Remote Storage."""
+
+    def __init__(self, *args, **kwargs):
+        """Initialize SteamWebAPI."""
+        super(ISteamNews, self).__init__(*args, **kwargs)
+
+    def GetCollectionDetails(self, collectioncount, method_version=1,
+                             **kwargs):
+        """"""
+        # Retrieve any instanceidN keyword arguments
+        publishedfileidsN = [
+            i for i in kwargs.iteritems() if re.match('publishedfileids(\d+)',
+                                                      i[0])
+        ]
+
+        # Set up the parameters
+        parameters = {
+            'collectioncount': collectioncount,
+            'key': self.key,
+        }
+
+        # Update the parameters with publishedfileidsN
+        parameters.update(publishedfileidsN)
+
+        # Return the APIQuery
+        return self.api_query(
+            interface=self.__class__.__name__,
+            method='GetCollectionDetails',
+            method_version=method_version,
+            httpmethod='POST',
+            parameters=parameters,
+        )
+
+    def GetPublishedFileDetails(self, itemcount, method_version=1, **kwargs):
+        """"""
+        # Retrieve any instanceidN keyword arguments
+        publishedfileidsN = [
+            i for i in kwargs.iteritems() if re.match('publishedfileids(\d+)',
+                                                      i[0])
+        ]
+
+        # Set up the parameters
+        parameters = {
+            'itemcount': itemcount,
+            'key': self.key,
+        }
+
+        # Update the parameters with publishedfileidsN
+        parameters.update(publishedfileidsN)
+
+        # Return the APIQuery
+        return self.api_query(
+            interface=self.__class__.__name__,
+            method='GetPublishedFileDetails',
+            method_version=method_version,
+            httpmethod='POST',
+            parameters=parameters,
+        )
+
+    def GetUGCFileDetails(self, ugcid, appid, steamid='', method_version=1):
+        """"""
+        # Set up the parameters
+        parameters = {
+            'ugcid': ugcid,
+            'appid': appid,
+            'steamid': steamid,
+            'key': self.key,
+        }
+
+        # Return the APIQuery
+        return self.api_query(
+            interface=self.__class__.__name__,
+            method='GetUGCFileDetails',
+            method_version=method_version,
+            httpmethod='GET',
+            parameters=parameters,
+        )
