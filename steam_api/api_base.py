@@ -55,7 +55,7 @@ class APIQuery(object):
         self._interface = interface
         self._method = method
         self._version = 'v{0:04d}'.format(method_version)
-        self._parameters = params
+        self._parameters = parameters
         self._httpmethod = str(httpmethod).upper()
         self._url = self._encode_url()
 
