@@ -65,8 +65,10 @@ class ISteamUser(SteamWebAPI):
         """"""
         if isinstance(steamids, str):
             pass
-        else:
+        elif isinstance(steamids, list):
             ",".join(steamids)
+        else:
+            steamids = str(steamids)
 
         # Set up the parameters
         parameters = {
