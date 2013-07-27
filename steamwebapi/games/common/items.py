@@ -1,7 +1,7 @@
 # =============================================================================
 # >> IMPORTS
 # =============================================================================
-from ..core import SteamWebAPI
+from ...core import SteamWebAPI
 
 
 # =============================================================================
@@ -126,7 +126,6 @@ class IEconItems(BaseIEconItems):
         )
 
 
-@public
 class ExtendedIEconItems(IEconItems):
     def __init__(self, *args, **kwargs):
         """Initialize IEconItems, which initializes SteamWebAPI."""

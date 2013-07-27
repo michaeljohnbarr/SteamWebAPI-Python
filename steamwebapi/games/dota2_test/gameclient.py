@@ -2,7 +2,7 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from ..common.items import IGCVersion
+from ..common.gameclient import IGCVersion
 from ...util.decorators import public
 
 
