@@ -9,12 +9,13 @@ from ...core import SteamWebAPI
 # >> CLASSES
 # =============================================================================
 class IDOTA2Fantasy_570(SteamWebAPI):
-    """"""
+    """Interface for the DOTA2 International Fantasy Challenge."""
+
     def GetFantasyLeagueLeaderboard(self, fantasyLeagueID, count,
                                     startTimeFilter='', endTimeFilter='',
                                     matchIDFilter='', last_match=False,
                                     in_hall=False, method_version=1):
-        """"""
+        """Retrieves the Fantasty League Leaderboard."""
         # Set up the parameters
         parameters = {
             'fantasyLeagueID': fantasyLeagueID,
@@ -40,7 +41,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
                               startTimeFilter='', endTimeFilter='',
                               matchIDFilter='', last_match=False,
                               method_version=1):
-        """"""
+        """Retrieves a player's score for the Fantasty League."""
         # Set up the parameters
         parameters = {
             'fantasyLeagueID': fantasyLeagueID,
@@ -64,7 +65,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
     def GetFantasyTeamInfoOwnedBy(self, ownerAccountID, fantasyLeagueID='',
                                   startTimeFilter='', endTimeFilter='',
                                   method_version=1):
-        """"""
+        """Retrieves the team owned by the specified owner account id."""
         # Set up the parameters
         parameters = {
             'ownerAccountID': ownerAccountID,
@@ -86,7 +87,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
     def GetFantasyTopPlayers(self, fantasyLeagueID, count, role='',
                              startTimeFilter='', endTimeFilter='',
                              last_match=False, method_version=1):
-        """"""
+        """Retrieves the top players of the Fantasty League."""
         # Set up the parameters
         parameters = {
             'fantasyLeagueID': fantasyLeagueID,
@@ -109,7 +110,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
 
     def GetValidFantasyPlayersForRoles(self, fantasyLeagueID, ownerAccountID,
                                        teamIndex, method_version=1):
-        """"""
+        """Retrieves players for roles in the Fantasty League."""
         # Set up the parameters
         parameters = {
             'fantasyLeagueID': fantasyLeagueID,
