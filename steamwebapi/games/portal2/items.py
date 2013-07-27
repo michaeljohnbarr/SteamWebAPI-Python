@@ -3,11 +3,13 @@
 # =============================================================================
 # API Imports
 from ..common.items import BaseITFPromos, BaseIEconItems
+from ...util.decorators import public
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
+@public
 class ITFPromos_620(BaseITFPromos):
     """Methods for retrieving and granting promo items for Portal 2."""
     def __init__(self, *args, **kwargs):
@@ -15,6 +17,7 @@ class ITFPromos_620(BaseITFPromos):
         super(ITFPromos_620, self).__init__(*args, **kwargs)
 
 
+@public
 class IEconItems_620(BaseIEconItems):
     """Methods relating to in-game items for Portal 2."""
     def __init__(self, *args, **kwargs):

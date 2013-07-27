@@ -6,11 +6,13 @@ import re
 
 # API Imports
 from .core import SteamWebAPI
+from .util.decorators import public
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
+@public
 class ISteamEconomy(SteamWebAPI):
     """Methods relating to games' store's assets."""
 
@@ -81,6 +83,7 @@ class ISteamEconomy(SteamWebAPI):
         )
 
 
+@public
 class ISteamGameServerAccount(SteamWebAPI):
     """"""
 
@@ -113,6 +116,7 @@ class ISteamGameServerAccount(SteamWebAPI):
         )
 
 
+@public
 class ISteamApps(SteamWebAPI):
     """Methods relating to Steam Apps in general."""
 
@@ -184,6 +188,7 @@ class ISteamApps(SteamWebAPI):
         )
 
 
+@public
 class ISteamNews(SteamWebAPI):
     """Methods relating to Steam News."""
 
@@ -217,6 +222,7 @@ class ISteamNews(SteamWebAPI):
         )
 
 
+@public
 class ISteamWebAPIUtil(SteamWebAPI):
     """Methods relating to the WebAPI itself."""
 
@@ -267,6 +273,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
         )
 
 
+@public
 class ISteamRemoteStorage(SteamWebAPI):
     """Methods relating to Steam Remote Storage."""
 

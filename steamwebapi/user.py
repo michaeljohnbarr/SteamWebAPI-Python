@@ -7,11 +7,13 @@ from urllib2 import HTTPError
 
 # API Imports
 from .core import SteamWebAPI
+from .util.decorators import public
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
+@public
 class ISteamUser(SteamWebAPI):
     def GetFriendList(self, steamid, relationship='all', method_version=1):
         """"""
@@ -117,6 +119,7 @@ class ISteamUser(SteamWebAPI):
         )
 
 
+@public
 class ISteamUserStats(SteamWebAPI):
     """"""
     def GetGlobalAchievementPercentagesForApp(self, gameid, method_version=2):
@@ -229,6 +232,7 @@ class ISteamUserStats(SteamWebAPI):
         )
 
 
+@public
 class IPlayerService(SteamWebAPI):
     """"""
     def GetRecentlyPlayedGames(self, steamid, count=0, method_version=1):

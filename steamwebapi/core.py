@@ -1,17 +1,19 @@
-# ==============================================================================
+# =============================================================================
 # >> IMPORTS
-# ==============================================================================
+# =============================================================================
 # Python Imports
 import urllib
 import urllib2
 
 # API Imports
-from settings import STEAM_API_KEY, DEFAULT_LANGUAGE, DEFAULT_FORMAT
+from .settings import STEAM_API_KEY, DEFAULT_LANGUAGE, DEFAULT_FORMAT
+from .util.decorators import public
 
 
-# ==============================================================================
+# =============================================================================
 # >> CLASSES
-# ==============================================================================
+# =============================================================================
+@public
 class SteamWebAPI(object):
     def __init__(self, key=STEAM_API_KEY, language=DEFAULT_LANGUAGE,
                  format=DEFAULT_FORMAT):
@@ -33,6 +35,7 @@ class SteamWebAPI(object):
         return APIQuery(*args, **kwargs).__getattribute__(self.format)
 
 
+@public
 class APIQuery(object):
     """Utility class for returning data in either raw JSON, XML, or VDF format
     as queried from urllib2.urlopen(API_URL) via any interface method.

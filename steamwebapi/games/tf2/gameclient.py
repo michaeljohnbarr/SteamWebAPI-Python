@@ -3,11 +3,13 @@
 # =============================================================================
 # API Imports
 from ..common.items import BaseIGCVersion
+from ...util.decorators import public
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
+@public
 class IGCVersion_440(BaseIGCVersion):
     """Methods for retrieving TF2 version information."""
 

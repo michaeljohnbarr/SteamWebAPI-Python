@@ -3,11 +3,13 @@
 # =============================================================================
 # API Imports
 from ...core import SteamWebAPI
+from ...util.decorators import public
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
+@public
 class IDOTA2Fantasy_570(SteamWebAPI):
     """Interface for the DOTA2 International Fantasy Challenge."""
 

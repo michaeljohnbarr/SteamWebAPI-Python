@@ -1,6 +1,12 @@
+# =============================================================================
+# >> IMPORTS
+# =============================================================================
 from ..core import SteamWebAPI
 
 
+# =============================================================================
+# >> CLASSES
+# =============================================================================
 class BaseITFPromos(SteamWebAPI):
     """Base class for ITFPromos_###."""
 
@@ -120,6 +126,7 @@ class IEconItems(BaseIEconItems):
         )
 
 
+@public
 class ExtendedIEconItems(IEconItems):
     def __init__(self, *args, **kwargs):
         """Initialize IEconItems, which initializes SteamWebAPI."""

@@ -2,12 +2,14 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from core import SteamWebAPI
+from .core import SteamWebAPI
+from .util.decorators import public
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
+@public
 class ISteamUserAuth(SteamWebAPI):
     """Methods relating to games' store's assets."""
 
@@ -48,6 +50,7 @@ class ISteamUserAuth(SteamWebAPI):
         )
 
 
+@public
 class ISteamWebUserPresenceOAuth(SteamWebAPI):
     """Methods relating to games' store's assets."""
 

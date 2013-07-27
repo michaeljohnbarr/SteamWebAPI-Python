@@ -3,12 +3,14 @@
 # =============================================================================
 # API Imports
 from ...core import SteamWebAPI
+from ...util.decorators import public
 from ..common.items import BaseITFPromos, ExtendedIEconItems
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
+@public
 class ITFPromos_440(BaseITFPromos):
     """Methods for retrieving and granting promo items for TF2."""
     def __init__(self, *args, **kwargs):
@@ -16,6 +18,7 @@ class ITFPromos_440(BaseITFPromos):
         super(ITFPromos_440, self).__init__(*args, **kwargs)
 
 
+@public
 class IEconItems_440(ExtendedIEconItems):
     """Methods relating to in-game items for TF2."""
     def __init__(self, *args, **kwargs):
@@ -23,6 +26,7 @@ class IEconItems_440(ExtendedIEconItems):
         super(IEconItems_440, self).__init__(*args, **kwargs)
 
 
+@public
 class ITFItems_440(SteamWebAPI):
     """Contains method for retrieving Golden Wrenches for TF2."""
     def __init__(self, *args, **kwargs):
