@@ -2,25 +2,15 @@
 # >> IMPORTS
 # =============================================================================
 # API Imports
-from steam_api.api_base import SteamWebAPI
+from ..common.items import BaseIGCVersion
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IGCVersion_520(SteamWebAPI):
-    def GetClientVersion(self,  **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetClientVersion',
-            version=kwargs.get('version', 1),
-            parameters=parameters,
-            key=True
-        )
+class IGCVersion_520(BaseIGCVersion):
+    """Methods for retrieving TF2 Beta version information."""
 
-    def GetServerVersion(self, **kwargs):
-        parameters = {}
-        return self.generate_api_url(
-            method='GetServerVersion',
-            version=kwargs.get('version', 1),
-            parameters=parameters, key=True)
+    def __init__(self, *args, **kwargs):
+        """Initialize BaseIGCVersion, which initializes SteamWebAPI."""
+        super(IGCVersion_520, self).__init__(*args, **kwargs)

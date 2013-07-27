@@ -5,7 +5,7 @@
 import re
 
 # API Imports
-from api_base import SteamWebAPI
+from .core import SteamWebAPI
 
 
 # =============================================================================

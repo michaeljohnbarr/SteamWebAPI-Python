@@ -1,4 +1,4 @@
-from ..api_base import SteamWebAPI
+from ..core import SteamWebAPI
 
 
 class BaseITFPromos(SteamWebAPI):

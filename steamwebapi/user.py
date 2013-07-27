@@ -6,7 +6,7 @@ import re
 from urllib2 import HTTPError
 
 # API Imports
-from api_base import SteamWebAPI
+from .core import SteamWebAPI
 
 
 # =============================================================================

@@ -3,7 +3,7 @@
 # =============================================================================
 # API Imports
 from ...common.items import BaseITFPromos, BaseIEconItems
-from ...api_base import SteamWebAPI
+from ...core import SteamWebAPI
 
 
 # =============================================================================
