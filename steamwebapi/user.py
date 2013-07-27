@@ -308,3 +308,20 @@ class IPlayerService(SteamWebAPI):
             httpmethod='GET',
             parameters=parameters,
         )
+
+    def GetCommunityBadgeProgress(self, steamid, badgeid, method_version=1):
+        """Retrieves badge progress for the given SteamID."""
+        # Set up the parameters
+        parameters = {
+            'steamid': steamid,
+            'badgeid': badgeid,
+            'key': self.key,
+        }
+
+        return self.api_query(
+            interface=self.__class__.__name__,
+            method='GetCommunityBadgeProgress',
+            method_version=method_version,
+            httpmethod='GET',
+            parameters=parameters,
+        )
