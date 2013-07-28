@@ -6,8 +6,14 @@ import urllib
 import urllib2
 
 # API Imports
-from .settings import STEAM_API_KEY, DEFAULT_LANGUAGE, DEFAULT_FORMAT
+from .settings import STEAM_API_KEY, DEFAULT_LANGUAGE, DEFAULT_DATA_FORMAT
 from .util.decorators import public
+
+
+# =============================================================================
+# >> GLOBALS
+# =============================================================================
+API_KEY_RE = re.compile('[A-Z0-9]{32}')
 
 
 # =============================================================================
@@ -16,18 +22,32 @@ from .util.decorators import public
 @public
 class SteamWebAPI(object):
     def __init__(self, key=STEAM_API_KEY, language=DEFAULT_LANGUAGE,
-                 format=DEFAULT_FORMAT):
+                 data_format=DEFAULT_DATA_FORMAT):
+        # Check the key to make sure it is the valid format
+        if key and not API_KEY_RE.match(key):
+            raise Exception('Bad Key')
+
+        # Make format lower case
+        data_format = format.lower()
+
+        # Check the format and to make sure it is a valid format
+        if data_format and not data_format in ('json', 'xml', 'vdf'):
+            raise Exception('Invalid format.')
+
+        # Set the instance attributes
         self.key = key
         self.language = language
-        self.format = format.lower()
+        self.data_format = data_format
 
+    @property
+    
     def api_query(self, *args, **kwargs):
         """Returns an APIQuery instance of the method that was passed in, or an
         executed APIQuery that returns urllib2.urlopen() if a default format is
         specified.
 
         """
-        if not self.format:
+        if not self.data_format:
             # Return the APIQuery instance
             return APIQuery(*args, **kwargs)
 

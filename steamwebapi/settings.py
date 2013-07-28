@@ -37,10 +37,10 @@ STEAM_API_KEY = ''
 #         default.
 DEFAULT_LANGUAGE = 'en'
 
-# The file format to return output in. If left blank, the default that the
+# The data format to return output in. If left blank, the default that the
 #   Steam Web API returns is JSON.
 #   Support Formats:
 #       json (JavaScript Object Notation Format)
 #       xml (Standard XML)
 #       vdf (Valve Data Format)
-DEFAULT_FORMAT = ''
+DEFAULT_DATA_FORMAT = ''

@@ -23,4 +23,4 @@ def public(f):
         all.append(f.__name__)
     return f
 
-public(public)  # Emulate decorating ourself
+public(public)  # Emulate decorating ourself (make public)
