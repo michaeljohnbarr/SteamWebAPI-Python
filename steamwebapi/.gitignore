@@ -1,2 +1,2 @@
 *.pyc
-settings.py
+steamwebapi/settings.py
