@@ -32,7 +32,7 @@ API_KEY_RE = re.compile('[A-Z0-9]{32}')
 class SteamWebAPI(object):
     def __init__(self, key=STEAM_API_KEY, language=DEFAULT_LANGUAGE,
                  data_format=DEFAULT_DATA_FORMAT):
-        """.. function:: __init__(key=STEAM_API_KEY, language=DEFAULT_LANGUAGE, data_format=DEFAULT_DATA_FORMAT)
+        """.. method:: __init__(key=STEAM_API_KEY, language=DEFAULT_LANGUAGE, data_format=DEFAULT_DATA_FORMAT)
 
         API base class which contains the default settings for all queries.
 
@@ -63,7 +63,9 @@ class SteamWebAPI(object):
         self.data_format = data_format
 
     def api_query(self, *args, **kwargs):
-        """Returns an APIQuery instance of the method that was passed in, or an
+        """.. method:: api_query(interface, method, method_version=1, httpmethod='GET', parameters={})
+
+        Returns an APIQuery instance of the method that was passed in, or an
         executed APIQuery that returns urllib2.urlopen() if a default format is
         specified.
 
@@ -91,7 +93,9 @@ class SteamWebAPI(object):
 
 @public
 class APIQuery(object):
-    """Utility class for returning data in either raw JSON, XML, or VDF format
+    """.. class:: APIQuery
+
+    Utility class for returning data in either raw JSON, XML, or VDF format
     as queried from urllib2.urlopen(API_URL) via any interface method.
 
     Example Usage:
@@ -109,7 +113,8 @@ class APIQuery(object):
     """
     def __init__(self, interface, method, method_version=1, httpmethod='GET',
                  parameters={}):
-        """
+        """.. method:: __init__(interface, method, method_version=1, httpmethod='GET', parameters={})
+
         :param interface: The alphanumeric Steam Web API Key assigned by Steam.
         :type interface: str.
         :param method: The default language to used return data.
@@ -132,7 +137,12 @@ class APIQuery(object):
         self._url = self._encode_url()
 
     def _encode_url(self):
-        """Formats the URL for the call via the Steam Web API."""
+        """.. method:: _encode_url()
+
+        Formats the URL for the call via the Steam Web API.
+
+        :returns:  url
+        """
         return 'http://api.steampowered.com/{0}/{1}/{2}/?{3}'.format(
             self._interface,
             self._method,
@@ -142,47 +152,87 @@ class APIQuery(object):
 
     @property
     def interface(self):
-        """Returns private variable interface."""
+        """.. attribute:: interface
+
+        (str) The interface that is being called.
+
+        Returns private variable interface."""
         return self._interface
 
     @property
     def method(self):
-        """Returns private variable method."""
+        """.. attribute:: method
+
+        (str) The method that is being called.
+
+        Returns private variable method.
+
+        """
         return self._method
 
     @property
     def version(self):
-        """Returns private variable version."""
+        """.. attribute:: version
+
+        (str) The version of the method (method_version).
+
+        Returns private variable version.
+
+        """
         return self._version
 
     @property
     def httpmethod(self):
-        """Returns private variable httpmethod."""
+        """.. attribute:: httpmethod
+
+        (str) GET or POST.
+
+        Returns private variable httpmethod.
+
+        """
         return self._httpmethod
 
     @property
     def url(self):
-        """Returns private variable url."""
+        """.. attribute:: url
+
+        (str) - The URL formatted for the query.
+
+        Returns private variable url.
+
+        """
         return self._url
 
     @property
     def parameters(self):
-        """Returns private variable parameters."""
+        """.. attribute:: parameters
+
+        Returns private variable parameters (read-only).
+
+        (dict) The parameters for the query.
+
+        """
         return self._parameters
 
     @property
     def xml(self):
+        """.. attribute:: xml
+
+        Returns """
         return self.as_xml()
 
     @property
     def json(self, load=False):
+        """.. attribute:: json"""
         return self.as_json(load)
 
     @property
     def vdf(self):
+        """.. attribute:: vdf"""
         return self.as_vdf()
 
     def as_xml(self):
+        """.. method:: as_xml()"""
         # We need to encode the URL again to prevent appending the format
         # multiple times.
         self._encode_url()
@@ -190,6 +240,7 @@ class APIQuery(object):
         return self._execute_query()
 
     def as_json(self, load=False):
+        """.. method:: as_json()"""
         # We need to encode the URL again to prevent appending the format
         # multiple times.
         self._encode_url()
@@ -197,6 +248,7 @@ class APIQuery(object):
         return self._execute_query()
 
     def as_vdf(self):
+        """.. method:: as_vdf()"""
         # We need to encode the URL again to prevent appending the format
         # multiple times.
         self._encode_url()

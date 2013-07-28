@@ -1,3 +1,12 @@
+"""
+.. module:: gameclient
+   :platform: Unix, Windows
+   :synopsis: Contains the API's "core" classes for constructing queries.
+
+.. moduleauthor:: Michael Barr <micbarr+developer@gmail.com>
+
+"""
+
 # =============================================================================
 # >> IMPORTS
 # =============================================================================
@@ -16,7 +25,9 @@ class BaseIGCVersion(SteamWebAPI):
         super(BaseIGCVersion, self).__init__(*args, **kwargs)
 
     def GetClientVersion(self, method_version=1):
-        """Retrieves the game's client version.
+        """.. function:: GetClientVersion(method_version=1)
+
+        Retrieves the game's client version.
 
         :param method_version: The method version to use.
         :type method_version: int.
@@ -36,7 +47,9 @@ class BaseIGCVersion(SteamWebAPI):
         )
 
     def GetServerVersion(self, method_version=1):
-        """Retrieves the game's server version.
+        """.. function:: GetServerVersion(method_version=1)
+
+        Retrieves the game's server version.
 
         :param method_version: The method version to use.
         :type method_version: int.
@@ -64,7 +77,9 @@ class IGCVersion(BaseIGCVersion):
         super(IGCVersion, self).__init__(*args, **kwargs)
 
     def GetClusterVersion(self, method_version=1):
-        """Retrieves the game's cluster version.
+        """.. function:: GetClusterVersion(method_version=1)
+
+        Retrieves the game's cluster version.
 
         :param method_version: The method version to use.
         :type method_version: int.

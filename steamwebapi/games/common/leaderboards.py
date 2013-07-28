@@ -1,3 +1,11 @@
+"""
+.. module:: leaderboards
+   :platform: Unix, Windows
+   :synopsis: Contains the API's "core" classes for constructing queries.
+
+.. moduleauthor:: Michael Barr <micbarr+developer@gmail.com>
+
+"""
 # =============================================================================
 # >> IMPORTS
 # =============================================================================

@@ -1,3 +1,11 @@
+"""
+.. module:: items
+   :platform: Unix, Windows
+   :synopsis: Contains the API's "core" classes for constructing queries.
+
+.. moduleauthor:: Michael Barr <micbarr+developer@gmail.com>
+
+"""
 # =============================================================================
 # >> IMPORTS
 # =============================================================================
@@ -15,7 +23,17 @@ class BaseITFPromos(SteamWebAPI):
         super(BaseITFPromos, self).__init__(*args, **kwargs)
 
     def GetItemID(self, steamid, promoid, method_version=1):
-        """"""
+        """
+        :param steamid: The method version to use.
+        :type steamid: int.
+        :param promoid: The method version to use.
+        :type promoid: int.
+        :param method_version: The method version to use.
+        :type method_version: int.
+        :returns:  APIQuery,
+        :raises: AttributeError, KeyError
+
+        """
         # Set up the parameters
         parameters = {
             'steamid': steamid,
