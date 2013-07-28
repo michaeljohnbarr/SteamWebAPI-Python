@@ -16,7 +16,14 @@ class BaseIGCVersion(SteamWebAPI):
         super(BaseIGCVersion, self).__init__(*args, **kwargs)
 
     def GetClientVersion(self, method_version=1):
-        """Retrieves the game's client version."""
+        """Retrieves the game's client version.
+
+        :param method_version: The method version to use.
+        :type method_version: int.
+        :returns:  APIQuery,
+        :raises: AttributeError, KeyError
+
+        """
         # Set up the parameters
         parameters = {}
 
@@ -29,7 +36,14 @@ class BaseIGCVersion(SteamWebAPI):
         )
 
     def GetServerVersion(self, method_version=1):
-        """Retrieves the game's server version."""
+        """Retrieves the game's server version.
+
+        :param method_version: The method version to use.
+        :type method_version: int.
+        :returns:  APIQuery,
+        :raises: AttributeError, KeyError
+
+        """
         # Set up the parameters
         parameters = {}
 
@@ -50,7 +64,14 @@ class IGCVersion(BaseIGCVersion):
         super(IGCVersion, self).__init__(*args, **kwargs)
 
     def GetClusterVersion(self, method_version=1):
-        """Retrieves the game's cluster version."""
+        """Retrieves the game's cluster version.
+
+        :param method_version: The method version to use.
+        :type method_version: int.
+        :returns:  APIQuery,
+        :raises: AttributeError, KeyError
+
+        """
         # Set up the parameters
         parameters = {}
 
