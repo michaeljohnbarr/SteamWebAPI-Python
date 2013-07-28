@@ -17,10 +17,10 @@ def public(f):
     http://groups.google.com/group/comp.lang.python/msg/3d400fb22d8a42e1
 
     """
-    all = sys.modules[f.__module__].__dict__.setdefault('__all__', [])
+    new_all = sys.modules[f.__module__].__dict__.setdefault('__all__', [])
     # Prevent duplicates if run from an IDE.
-    if f.__name__ not in all:
-        all.append(f.__name__)
+    if f.__name__ not in new_all:
+        new_all.append(f.__name__)
     return f
 
 public(public)  # Emulate decorating ourself (make public)
