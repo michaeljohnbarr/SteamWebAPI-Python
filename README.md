@@ -3,10 +3,15 @@ SteamWebAPI-Python
 
 A class-based wrapper for the Steam Community Web API. Each class is the "interface" provided by the Steam Web API which contains the methods within the interface.
 
-.. note:: The dev branch is undergoing rapid development.
-   Please be aware that we have not finalized any classes, methods, or functions outside of the interfaces/methods that Valve provides.
+**NOTE**:
 
-   Until there is a release or tagged version of this package, all contents may be unstable. We certainly welcome your feedback during this time, and encourage you to not only follow the project, but report issues and submit feedback.
+    The dev branch is undergoing rapid development.
+    Please be aware that we have not finalized any classes, methods, or functions outside of the interfaces/methods
+    that Valve provides.
+
+    Until there is a release or tagged version of this package, all contents may be unstable. We certainly *welcome
+    your feedback* during this time, and encourage you to not only follow the project, but report issues and submit
+    feedback.
 
 settings.py:
 ------------
