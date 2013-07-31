@@ -6,7 +6,7 @@ import re
 
 # API Imports
 from .core import SteamWebAPI
-from .util.decorators import public
+from .util.decorators import public, api_key_required
 
 
 # =============================================================================
@@ -16,6 +16,7 @@ from .util.decorators import public
 class ISteamEconomy(SteamWebAPI):
     """Methods relating to games' store's assets."""
 
+    @api_key_required
     def GetAssetPrices(self, appid, currency='usd', language='',
                        method_version=1):
         """Retrieves the prices of game assets/items from the Steam Store.
@@ -40,6 +41,7 @@ class ISteamEconomy(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetAssetClassInfo(self, appid, class_count, language='',
                           method_version=1, **kwargs):
         """Retrieves the class information of game assets/items from the Steam
@@ -257,6 +259,7 @@ class ISteamWebAPIUtil(SteamWebAPI):
 class ISteamRemoteStorage(SteamWebAPI):
     """Methods relating to Steam Remote Storage."""
 
+    @api_key_required
     def GetCollectionDetails(self, collectioncount, method_version=1,
                              **kwargs):
         """"""
@@ -284,6 +287,7 @@ class ISteamRemoteStorage(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetPublishedFileDetails(self, itemcount, method_version=1, **kwargs):
         """"""
         # Retrieve any instanceidN keyword arguments
@@ -310,6 +314,7 @@ class ISteamRemoteStorage(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetUGCFileDetails(self, ugcid, appid, steamid='', method_version=1):
         """"""
         # Set up the parameters

@@ -3,7 +3,7 @@
 # =============================================================================
 # API Imports
 from .core import SteamWebAPI
-from .util.decorators import public
+from .util.decorators import public, api_key_required
 
 
 # =============================================================================
@@ -13,6 +13,7 @@ from .util.decorators import public
 class ISteamUserAuth(SteamWebAPI):
     """Methods relating to games' store's assets."""
 
+    @api_key_required
     def AuthenticateUser(self, steamid, sessionkey, encrypted_loginkey,
                          method_version=1):
         """
@@ -50,6 +51,7 @@ class ISteamUserAuth(SteamWebAPI):
 class ISteamWebUserPresenceOAuth(SteamWebAPI):
     """Methods relating to games' store's assets."""
 
+    @api_key_required
     def PollStatus(self, steamid, umqid, message, pollid='', sectimeout='',
                    secidletime='', use_accountids=False, method_version=1):
         """

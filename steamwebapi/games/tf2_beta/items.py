@@ -1,10 +1,13 @@
 # =============================================================================
 # >> IMPORTS
 # =============================================================================
+# Python Imports
+import warnings
+
 # API Imports
-from ..common.items import BaseITFPromos, BaseIEconItems
+from ..common.items import _BaseITFPromos, _BaseIEconItems
 from ...core import SteamWebAPI
-from ...util.decorators import public
+from ...util.decorators import public, api_key_required
 
 
 # =============================================================================
@@ -14,50 +17,70 @@ from ...util.decorators import public
 class ITFItems_520(SteamWebAPI):
     """"""
 
-    def GetGoldenWrenches(self, **kwargs):
+    @api_key_required
+    def GetGoldenWrenches(self, method_version=2):
+        # Set up the parameters
         parameters = {}
+
+        # Return the APIQuery
         return self.api_query(
+            interface=self.__class__.__name__,
             method='GetGoldenWrenches',
-            version=kwargs.get('method_version', 2),
-            params=parameters,
-            key=True
+            method_version=method_version,
+            httpmethod='GET',
+            parameters=parameters,
         )
 
 
 @public
-class ITFPromos_520(BaseITFPromos):
+class ITFPromos_520(_BaseITFPromos):
     """Methods for retrieving and and granting promo items."""
 
 
 @public
-class IEconItems_520(BaseIEconItems):
+class IEconItems_520(_BaseIEconItems):
     """Methods relating to in-game items for supported games."""
 
-    def GetSchemaURL(self, **kwargs):
+    def GetSchemaURL(self, method_version=1):
+        """"""
+        # Set up the parameters
         parameters = {}
+
+        # Return the APIQuery
         return self.api_query(
+            interface=self.__class__.__name__,
             method='GetSchemaURL',
-            version=kwargs.get('method_version', 1),
-            params=parameters,
-            key=True
+            method_version=method_version,
+            httpmethod='GET',
+            parameters=parameters,
         )
 
-    def GetStoreMetaData(self, language='', **kwargs):
+    def GetStoreMetaData(self, language='', method_version=1):
+        """"""
+        # Set up the parameters
         parameters = {
             'language': language,
         }
+
+        # Return the APIQuery
         return self.api_query(
+            interface=self.__class__.__name__,
             method='GetStoreMetaData',
-            version=kwargs.get('method_version', 1),
-            params=parameters,
-            key=True
+            method_version=method_version,
+            httpmethod='GET',
+            parameters=parameters,
         )
 
-    def GetStoreStatus(self, **kwargs):
+    def GetStoreStatus(self, method_version=1):
+        """"""
+        # Set up the parameters
         parameters = {}
+
+        # Return the APIQuery
         return self.api_query(
+            interface=self.__class__.__name__,
             method='GetStoreStatus',
-            version=kwargs.get('method_version', 1),
-            params=parameters,
-            key=True
+            method_version=method_version,
+            httpmethod='GET',
+            parameters=parameters,
         )

@@ -3,7 +3,9 @@
 # =============================================================================
 # Python Imports
 import sys
-from functools import wraps
+
+# Util Imports
+from .exceptions import APIKeyRequiredError
 
 
 # =============================================================================
@@ -30,5 +32,5 @@ public(public)  # Emulate decorating ourself (make public)
 def api_key_required(f):
     def decorator(self, *args, **kwargs):
         if not self.key:
-            raise Exception('You dun fucked up.')
+            raise APIKeyRequiredError
     return decorator

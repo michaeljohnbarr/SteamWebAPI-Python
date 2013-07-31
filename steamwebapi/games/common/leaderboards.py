@@ -16,8 +16,8 @@ from ...core import SteamWebAPI
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class IPortal2Leaderboards(SteamWebAPI):
-    """Base class for IPortal2Leaderboards."""
+class _IPortal2Leaderboards(SteamWebAPI):
+    """Base class for _IPortal2Leaderboards."""
 
     def GetBucketizedData(self, leaderboardName, method_version=1):
         """"""

@@ -15,6 +15,8 @@ from .util.decorators import public, api_key_required
 # =============================================================================
 @public
 class ISteamUser(SteamWebAPI):
+    """"""
+
     @api_key_required
     def GetFriendList(self, steamid, relationship='all', method_version=1):
         """"""
@@ -24,27 +26,24 @@ class ISteamUser(SteamWebAPI):
             'relationship': relationship,
             'key': self.key,
         }
+
         # According to http://wiki.teamfortress.com/wiki/WebAPI/GetFriendList,
         #   "If the profile is not public or there are no available entries for
         #   the given relationship only an empty object will be returned."
         #   However, this is not the case. It gives a 401 Unauthorized
         #   HTTPError. Thus, we must create this workaround.
-        try:
-            return self.api_query(
-                interface=self.__class__.__name__,
-                method='GetFriendList',
-                method_version=method_version,
-                httpmethod='GET',
-                parameters=parameters,
-            )
-        except HTTPError, e:
-            # The expected 401 Unauthorized Error
-            if e.code == 401:
-                return {}
-            # Expect the unexpected
-            raise
+        # Return the APIQuery
+        return self.api_query(
+            interface=self.__class__.__name__,
+            method='GetFriendList',
+            method_version=method_version,
+            httpmethod='GET',
+            parameters=parameters,
+        )
 
+    @api_key_required
     def GetPlayerBans(self, steamids=[], method_version=1):
+        """"""
         if isinstance(steamids, str):
             pass
         else:
@@ -56,6 +55,7 @@ class ISteamUser(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetPlayerBans',
@@ -64,6 +64,7 @@ class ISteamUser(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetPlayerSummaries(self, steamids=[], method_version=2):
         """"""
         if isinstance(steamids, str):
@@ -87,6 +88,7 @@ class ISteamUser(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetUserGroupList(self, steamid, method_version=1):
         """"""
         # Set up the parameters
@@ -95,6 +97,7 @@ class ISteamUser(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetUserGroupList',
@@ -103,6 +106,7 @@ class ISteamUser(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def ResolveVanityURL(self, vanityURL, method_version=1):
         """"""
         # Set up the parameters
@@ -111,6 +115,7 @@ class ISteamUser(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='ResolveVanityURL',
@@ -130,6 +135,7 @@ class ISteamUserStats(SteamWebAPI):
             'gameid': gameid,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetGlobalAchievementPercentagesForApp',
@@ -157,6 +163,7 @@ class ISteamUserStats(SteamWebAPI):
         # Update the parameters with nameN
         parameters.update(nameN)
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetGlobalStatsForGame',
@@ -172,6 +179,7 @@ class ISteamUserStats(SteamWebAPI):
             'appid': appid,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetNumberOfCurrentPlayers',
@@ -180,6 +188,7 @@ class ISteamUserStats(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetSchemaForGame(self, appid, l='', method_version=2):
         """Retrieves the game schema for the given appid."""
         # Set up the parameters
@@ -189,6 +198,7 @@ class ISteamUserStats(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetSchemaForGame',
@@ -197,6 +207,7 @@ class ISteamUserStats(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetUserStatsForGame(self, steamid, appid, method_version=2):
         """Retrieves the stats for the given SteamID and appid."""
         # Set up the parameters
@@ -206,6 +217,7 @@ class ISteamUserStats(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetSchemaForGame',
@@ -214,6 +226,7 @@ class ISteamUserStats(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetPlayerAchievements(self, steamid, appid, l='', method_version=1):
         """Retrieves the achievements for the given SteamID and appid."""
         # Set up the parameters
@@ -224,6 +237,7 @@ class ISteamUserStats(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetPlayerAchievements',
@@ -236,6 +250,7 @@ class ISteamUserStats(SteamWebAPI):
 @public
 class IPlayerService(SteamWebAPI):
     """"""
+    @api_key_required
     def GetRecentlyPlayedGames(self, steamid, count=0, method_version=1):
         """Retrieves the recently played games for the given SteamID up to
         the given count.
@@ -248,6 +263,7 @@ class IPlayerService(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetRecentlyPlayedGames',
@@ -256,6 +272,7 @@ class IPlayerService(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetOwnedGames(self, steamid, include_appinfo=True,
                       include_played_free_games=True, appids_filter=[],
                       method_version=1):
@@ -274,6 +291,7 @@ class IPlayerService(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetOwnedGames',
@@ -282,6 +300,7 @@ class IPlayerService(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetSteamLevel(self, steamid, method_version=1):
         """Retrieves the Steam Level for the given SteamID."""
         # Set up the parameters
@@ -290,6 +309,7 @@ class IPlayerService(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetSteamLevel',
@@ -298,6 +318,7 @@ class IPlayerService(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetBadges(self, steamid, method_version=1):
         """Retrieves badge information for the given SteamID."""
         # Set up the parameters
@@ -306,6 +327,7 @@ class IPlayerService(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetBadges',
@@ -314,6 +336,7 @@ class IPlayerService(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetCommunityBadgeProgress(self, steamid, badgeid, method_version=1):
         """Retrieves badge progress for the given SteamID."""
         # Set up the parameters
@@ -323,6 +346,7 @@ class IPlayerService(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetCommunityBadgeProgress',

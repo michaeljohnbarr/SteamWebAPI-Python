@@ -2,9 +2,6 @@ class SteamWebAPIError(Exception):
     pass
 
 
-class PrivateProfileError(SteamWebAPIError):
-    def __init__(self, steamid):
-        self.steamid = steamid
-
+class APIKeyRequiredError(SteamWebAPIError):
     def __str__(self):
-        return '%s has a private/friends-only profile.' % self.steamid
+        return repr('This method requires a Steam Web API Key.')

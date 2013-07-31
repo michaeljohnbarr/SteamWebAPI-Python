@@ -10,14 +10,16 @@
 # >> IMPORTS
 # =============================================================================
 from ...core import SteamWebAPI
+from ...util.decorators import api_key_required
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class BaseITFPromos(SteamWebAPI):
+class _BaseITFPromos(SteamWebAPI):
     """Base class for ITFPromos_###."""
 
+    @api_key_required
     def GetItemID(self, steamid, promoid, method_version=1):
         """
         :param steamid: The method version to use.
@@ -37,6 +39,7 @@ class BaseITFPromos(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetItemID',
@@ -45,6 +48,7 @@ class BaseITFPromos(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GrantItem(self, steamid, promoid, method_version=1):
         """"""
         # Set up the parameters
@@ -54,6 +58,7 @@ class BaseITFPromos(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GrantItem',
@@ -63,9 +68,10 @@ class BaseITFPromos(SteamWebAPI):
         )
 
 
-class BaseIEconItems(SteamWebAPI):
+class _BaseIEconItems(SteamWebAPI):
     """Base class for IEconItems_###."""
 
+    @api_key_required
     def GetPlayerItems(self, steamid, method_version=1):
         """"""
         # Set up the parameters
@@ -74,6 +80,7 @@ class BaseIEconItems(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetPlayerItems',
@@ -82,6 +89,7 @@ class BaseIEconItems(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetSchema(self, language='', method_version=1):
         """"""
         # Set up the parameters
@@ -90,6 +98,7 @@ class BaseIEconItems(SteamWebAPI):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetSchema',
@@ -99,9 +108,10 @@ class BaseIEconItems(SteamWebAPI):
         )
 
 
-class IEconItems(BaseIEconItems):
+class _IEconItems(_BaseIEconItems):
     """"""
 
+    @api_key_required
     def GetSchemaURL(self, method_version=1):
         """"""
         # Set up the parameters
@@ -109,6 +119,7 @@ class IEconItems(BaseIEconItems):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetSchemaURL',
@@ -117,6 +128,7 @@ class IEconItems(BaseIEconItems):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetStoreMetaData(self, language='', method_version=1):
         """"""
         # Set up the parameters
@@ -125,6 +137,7 @@ class IEconItems(BaseIEconItems):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetStoreMetaData',
@@ -134,9 +147,10 @@ class IEconItems(BaseIEconItems):
         )
 
 
-class ExtendedIEconItems(IEconItems):
+class _ExtendedIEconItems(_IEconItems):
     """"""
 
+    @api_key_required
     def GetStoreStatus(self, language='', method_version=1):
         """"""
         # Set up the parameters
@@ -145,6 +159,7 @@ class ExtendedIEconItems(IEconItems):
             'key': self.key,
         }
 
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetStoreMetaData',
@@ -154,9 +169,10 @@ class ExtendedIEconItems(IEconItems):
         )
 
 
-class BaseIEconDOTA2(SteamWebAPI):
+class _BaseIEconDOTA2(SteamWebAPI):
     """Base class for IEconDOTA2_###."""
 
+    @api_key_required
     def GetHeroes(self, itemizedonly, language='', method_version=1):
         """"""
         # Set up the parameters
@@ -166,7 +182,7 @@ class BaseIEconDOTA2(SteamWebAPI):
             'key': self.key,
         }
 
-        #
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetHeroes',
@@ -175,6 +191,7 @@ class BaseIEconDOTA2(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetRarities(self, language='', method_version=1):
         """"""
         # Set up the parameters
@@ -183,7 +200,7 @@ class BaseIEconDOTA2(SteamWebAPI):
             'key': self.key,
         }
 
-        #
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetRarities',
@@ -192,6 +209,7 @@ class BaseIEconDOTA2(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetTournamentPrizePool(self, method_version=1):
         """"""
         # Set up the parameters
@@ -199,7 +217,7 @@ class BaseIEconDOTA2(SteamWebAPI):
             'key': self.key,
         }
 
-        #
+        # Return the APIQuery
         return self.api_query(
             interface=self.__class__.__name__,
             method='GetTournamentPrizePool',

@@ -3,7 +3,7 @@
 # =============================================================================
 # API Imports
 from ...core import SteamWebAPI
-from ...util.decorators import public
+from ...util.decorators import public, api_key_required
 
 
 # =============================================================================
@@ -13,6 +13,7 @@ from ...util.decorators import public
 class IDOTA2Fantasy_570(SteamWebAPI):
     """Interface for the DOTA2 International Fantasy Challenge."""
 
+    @api_key_required
     def GetFantasyLeagueLeaderboard(self, fantasyLeagueID, count,
                                     startTimeFilter='', endTimeFilter='',
                                     matchIDFilter='', last_match=False,
@@ -39,6 +40,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetFantasyPlayerScore(self, fantasyLeagueID, playerAccountID,
                               startTimeFilter='', endTimeFilter='',
                               matchIDFilter='', last_match=False,
@@ -64,6 +66,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetFantasyTeamInfoOwnedBy(self, ownerAccountID, fantasyLeagueID='',
                                   startTimeFilter='', endTimeFilter='',
                                   method_version=1):
@@ -86,6 +89,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetFantasyTopPlayers(self, fantasyLeagueID, count, role='',
                              startTimeFilter='', endTimeFilter='',
                              last_match=False, method_version=1):
@@ -110,6 +114,7 @@ class IDOTA2Fantasy_570(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetValidFantasyPlayersForRoles(self, fantasyLeagueID, ownerAccountID,
                                        teamIndex, method_version=1):
         """Retrieves players for roles in the Fantasty League."""

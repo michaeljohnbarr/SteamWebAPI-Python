@@ -11,14 +11,16 @@
 # =============================================================================
 # API Imports
 from ...core import SteamWebAPI
+from ...util.decorators import api_key_required
 
 
 # =============================================================================
 # >> CLASSES
 # =============================================================================
-class BaseIDOTA2Match(SteamWebAPI):
+class _BaseIDOTA2Match(SteamWebAPI):
     """Base class for IDOTA2Match_###."""
 
+    @api_key_required
     def GetLeagueListing(self, method_version=1):
         """"""
         # Set up the parameters
@@ -34,6 +36,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetLiveLeagueGames(self, method_version=1):
         """"""
         # Set up the parameters
@@ -49,6 +52,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetMatchDetails(self, match_id, method_version=1):
         """"""
         # Set up the parameters
@@ -65,6 +69,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetMatchHistory(self, player_name=None, hero_id=None, game_mode=None,
                         skill=None, date_min=None, date_max=None,
                         min_players=None, account_id=None, league_id=None,
@@ -96,6 +101,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetMatchHistoryBySequenceNum(self, start_at_match_seq_num,
                                      matches_requested, method_version=1):
         """"""
@@ -114,6 +120,7 @@ class BaseIDOTA2Match(SteamWebAPI):
             parameters=parameters,
         )
 
+    @api_key_required
     def GetTeamInfoByTeamID(self, start_at_team_id, teams_requested,
                             method_version=1):
         """"""
