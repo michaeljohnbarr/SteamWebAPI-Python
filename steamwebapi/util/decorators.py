@@ -3,6 +3,7 @@
 # =============================================================================
 # Python Imports
 import sys
+from functools import wraps
 
 
 # =============================================================================
@@ -24,3 +25,10 @@ def public(f):
     return f
 
 public(public)  # Emulate decorating ourself (make public)
+
+
+def api_key_required(f):
+    def decorator(self, *args, **kwargs):
+        if not self.key:
+            raise Exception('You dun fucked up.')
+    return decorator

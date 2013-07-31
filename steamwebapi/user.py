@@ -7,7 +7,7 @@ from urllib2 import HTTPError
 
 # API Imports
 from .core import SteamWebAPI
-from .util.decorators import public
+from .util.decorators import public, api_key_required
 
 
 # =============================================================================
@@ -15,6 +15,7 @@ from .util.decorators import public
 # =============================================================================
 @public
 class ISteamUser(SteamWebAPI):
+    @api_key_required
     def GetFriendList(self, steamid, relationship='all', method_version=1):
         """"""
         # Set up the parameters

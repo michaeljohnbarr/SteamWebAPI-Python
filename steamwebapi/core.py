@@ -15,7 +15,7 @@ import urllib2
 import re
 
 # API Imports
-from .settings import STEAM_API_KEY, DEFAULT_LANGUAGE, DEFAULT_DATA_FORMAT
+from .settings import STEAM_API_KEY, DEFAULT_LANGUAGE
 from .util.decorators import public
 
 
@@ -30,9 +30,8 @@ API_KEY_RE = re.compile('[A-Z0-9]{32}')
 # =============================================================================
 @public
 class SteamWebAPI(object):
-    def __init__(self, key=STEAM_API_KEY, language=DEFAULT_LANGUAGE,
-                 data_format=DEFAULT_DATA_FORMAT):
-        """.. method:: __init__(key=STEAM_API_KEY, language=DEFAULT_LANGUAGE, data_format=DEFAULT_DATA_FORMAT)
+    def __init__(self, key=STEAM_API_KEY, language=DEFAULT_LANGUAGE):
+        """.. method:: __init__(key=STEAM_API_KEY, language=DEFAULT_LANGUAGE)
 
         API base class which contains the default settings for all queries.
 
@@ -50,17 +49,9 @@ class SteamWebAPI(object):
         if key and not API_KEY_RE.match(key):
             raise Exception('Bad Key')
 
-        # Make format lower case
-        data_format = data_format.lower()
-
-        # Check the format and to make sure it is a valid format
-        if data_format and not data_format in ('json', 'xml', 'vdf'):
-            raise Exception('Invalid format.')
-
         # Set the instance attributes
         self.key = key
         self.language = language
-        self.data_format = data_format
 
     def api_query(self, *args, **kwargs):
         """.. method:: api_query(interface, method, method_version=1, httpmethod='GET', parameters={})
@@ -83,12 +74,8 @@ class SteamWebAPI(object):
         :raises: ?
 
         """
-        if not self.data_format:
-            # Return the APIQuery instance
-            return APIQuery(*args, **kwargs)
-
-        # Return an executed APIQuery call with the format of their choice
-        return APIQuery(*args, **kwargs).__getattribute__(self.format)
+        # Return the APIQuery instance
+        return APIQuery(*args, **kwargs)
 
 
 @public
@@ -207,7 +194,7 @@ class APIQuery(object):
     def parameters(self):
         """.. attribute:: parameters
 
-        Returns private variable parameters (read-only).
+        (str) - Returns private variable parameters (read-only).
 
         (dict) The parameters for the query.
 
