@@ -12,6 +12,8 @@ from ...util.decorators import public
 # =============================================================================
 @public
 class ITFItems_520(SteamWebAPI):
+    """"""
+
     def GetGoldenWrenches(self, **kwargs):
         parameters = {}
         return self.api_query(
@@ -25,17 +27,11 @@ class ITFItems_520(SteamWebAPI):
 @public
 class ITFPromos_520(BaseITFPromos):
     """Methods for retrieving and and granting promo items."""
-    def __init__(self, *args, **kwargs):
-        """Initialize BaseITFPromos, which initializes SteamWebAPI."""
-        super(ITFPromos_520, self).__init__(*args, **kwargs)
 
 
 @public
 class IEconItems_520(BaseIEconItems):
     """Methods relating to in-game items for supported games."""
-    def __init__(self, *args, **kwargs):
-        """Initialize BaseIEconItems, which initializes SteamWebAPI."""
-        super(IEconItems_520, self).__init__(*args, **kwargs)
 
     def GetSchemaURL(self, **kwargs):
         parameters = {}

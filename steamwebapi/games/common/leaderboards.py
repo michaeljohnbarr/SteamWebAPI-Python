@@ -19,10 +19,6 @@ from ...core import SteamWebAPI
 class IPortal2Leaderboards(SteamWebAPI):
     """Base class for IPortal2Leaderboards."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(IPortal2Leaderboards, self).__init__(*args, **kwargs)
-
     def GetBucketizedData(self, leaderboardName, method_version=1):
         """"""
         # Set up the parameters

@@ -20,10 +20,6 @@ from ...core import SteamWebAPI
 class BaseIGCVersion(SteamWebAPI):
     """Base class for IGCVersion_###."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(BaseIGCVersion, self).__init__(*args, **kwargs)
-
     def GetClientVersion(self, method_version=1):
         """.. function:: GetClientVersion(method_version=1)
 
@@ -71,10 +67,6 @@ class BaseIGCVersion(SteamWebAPI):
 
 class IGCVersion(BaseIGCVersion):
     """Extends BaseIGCVersion adding methods not shared by all interfaces."""
-
-    def __init__(self, *args, **kwargs):
-        """Initialize BaseIGCVersion."""
-        super(IGCVersion, self).__init__(*args, **kwargs)
 
     def GetClusterVersion(self, method_version=1):
         """.. function:: GetClusterVersion(method_version=1)

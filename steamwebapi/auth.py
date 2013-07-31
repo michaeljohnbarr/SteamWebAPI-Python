@@ -13,10 +13,6 @@ from .util.decorators import public
 class ISteamUserAuth(SteamWebAPI):
     """Methods relating to games' store's assets."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamUserAuth, self).__init__(*args, **kwargs)
-
     def AuthenticateUser(self, steamid, sessionkey, encrypted_loginkey,
                          method_version=1):
         """
@@ -53,10 +49,6 @@ class ISteamUserAuth(SteamWebAPI):
 @public
 class ISteamWebUserPresenceOAuth(SteamWebAPI):
     """Methods relating to games' store's assets."""
-
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamWebUserPresenceOAuth, self).__init__(*args, **kwargs)
 
     def PollStatus(self, steamid, umqid, message, pollid='', sectimeout='',
                    secidletime='', use_accountids=False, method_version=1):

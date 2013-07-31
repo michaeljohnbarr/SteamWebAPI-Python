@@ -16,10 +16,6 @@ from .util.decorators import public
 class ISteamEconomy(SteamWebAPI):
     """Methods relating to games' store's assets."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamEconomy, self).__init__(*args, **kwargs)
-
     def GetAssetPrices(self, appid, currency='usd', language='',
                        method_version=1):
         """Retrieves the prices of game assets/items from the Steam Store.
@@ -87,10 +83,6 @@ class ISteamEconomy(SteamWebAPI):
 class ISteamGameServerAccount(SteamWebAPI):
     """"""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamGameServerAccount, self).__init__(*args, **kwargs)
-
     def GetAccountPublicInfoBySteamID(self, steamid, method_version=1):
         """Retrieves information when given a game server's steamid.
 
@@ -119,10 +111,6 @@ class ISteamGameServerAccount(SteamWebAPI):
 @public
 class ISteamApps(SteamWebAPI):
     """Methods relating to Steam Apps in general."""
-
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamApps, self).__init__(*args, **kwargs)
 
     def GetAppList(self, method_version=1):
         """Returns a full list of every publicly facing program in the
@@ -192,10 +180,6 @@ class ISteamApps(SteamWebAPI):
 class ISteamNews(SteamWebAPI):
     """Methods relating to Steam News."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamNews, self).__init__(*args, **kwargs)
-
     def GetNewsForApp(self, appid, maxlength='', enddate='', count='',
                       feeds='', method_version=2):
         """Retrieves news for the given appid.
@@ -225,10 +209,6 @@ class ISteamNews(SteamWebAPI):
 @public
 class ISteamWebAPIUtil(SteamWebAPI):
     """Methods relating to the WebAPI itself."""
-
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamWebAPIUtil, self).__init__(*args, **kwargs)
 
     def GetServerInfo(self, method_version=1):
         """Retrieves the Steam Web API server's time information
@@ -276,10 +256,6 @@ class ISteamWebAPIUtil(SteamWebAPI):
 @public
 class ISteamRemoteStorage(SteamWebAPI):
     """Methods relating to Steam Remote Storage."""
-
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(ISteamNews, self).__init__(*args, **kwargs)
 
     def GetCollectionDetails(self, collectioncount, method_version=1,
                              **kwargs):

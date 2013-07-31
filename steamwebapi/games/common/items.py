@@ -18,10 +18,6 @@ from ...core import SteamWebAPI
 class BaseITFPromos(SteamWebAPI):
     """Base class for ITFPromos_###."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(BaseITFPromos, self).__init__(*args, **kwargs)
-
     def GetItemID(self, steamid, promoid, method_version=1):
         """
         :param steamid: The method version to use.
@@ -70,10 +66,6 @@ class BaseITFPromos(SteamWebAPI):
 class BaseIEconItems(SteamWebAPI):
     """Base class for IEconItems_###."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(BaseIEconItems, self).__init__(*args, **kwargs)
-
     def GetPlayerItems(self, steamid, method_version=1):
         """"""
         # Set up the parameters
@@ -108,9 +100,7 @@ class BaseIEconItems(SteamWebAPI):
 
 
 class IEconItems(BaseIEconItems):
-    def __init__(self, *args, **kwargs):
-        """Initialize BaseIEconItems, which initializes SteamWebAPI."""
-        super(IEconItems, self).__init__(*args, **kwargs)
+    """"""
 
     def GetSchemaURL(self, method_version=1):
         """"""
@@ -145,9 +135,7 @@ class IEconItems(BaseIEconItems):
 
 
 class ExtendedIEconItems(IEconItems):
-    def __init__(self, *args, **kwargs):
-        """Initialize IEconItems, which initializes SteamWebAPI."""
-        super(ExtendedIEconItems, self).__init__(*args, **kwargs)
+    """"""
 
     def GetStoreStatus(self, language='', method_version=1):
         """"""
@@ -168,10 +156,6 @@ class ExtendedIEconItems(IEconItems):
 
 class BaseIEconDOTA2(SteamWebAPI):
     """Base class for IEconDOTA2_###."""
-
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(BaseIEconDOTA2, self).__init__(*args, **kwargs)
 
     def GetHeroes(self, itemizedonly, language='', method_version=1):
         """"""

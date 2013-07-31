@@ -19,10 +19,6 @@ from ...core import SteamWebAPI
 class BaseIDOTA2Match(SteamWebAPI):
     """Base class for IDOTA2Match_###."""
 
-    def __init__(self, *args, **kwargs):
-        """Initialize SteamWebAPI."""
-        super(BaseIDOTA2Match, self).__init__(*args, **kwargs)
-
     def GetLeagueListing(self, method_version=1):
         """"""
         # Set up the parameters
