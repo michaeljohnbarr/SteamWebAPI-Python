@@ -29,8 +29,11 @@ def public(f):
 public(public)  # Emulate decorating ourself (make public)
 
 
+@public
 class api_key_required(object):
-    """
+    """Decorator which checks to make sure the instance method has a Steam Web
+    API Key declared.
+
     """
 
     def __init__(self, method):
