@@ -21,6 +21,7 @@ from requests.compat import urlencode
 # API Imports
 from .settings import STEAM_API_KEY, DEFAULT_LANGUAGE
 from .util.decorators import public
+from .util.exceptions import APIKeyInvalidError
 
 
 # =============================================================================
@@ -51,7 +52,7 @@ class SteamWebAPI(object):
         """
         # Check the key to make sure it is the valid format
         if key and not API_KEY_RE.match(key):
-            raise Exception('Bad Key')
+            raise APIKeyInvalidError
 
         # Set the instance attributes
         self.key = key
