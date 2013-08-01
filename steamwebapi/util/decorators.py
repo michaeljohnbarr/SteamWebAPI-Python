@@ -29,8 +29,26 @@ def public(f):
 public(public)  # Emulate decorating ourself (make public)
 
 
-def api_key_required(f):
-    def decorator(self, *args, **kwargs):
-        if not self.key:
+class api_key_required(object):
+    """
+    """
+
+    def __init__(self, method):
+        '''Store the method instance for further use'''
+        self.method = method
+
+    def __get__(self, instance, owner):
+        '''Return the class value instead of the methods directly'''
+        return self.__class__(self.method.__get__(instance, owner))
+
+    def __call__(self, *args, **kwargs):
+        '''Verifies that the key exists prior to calling the method'''
+
+        # Does the class have an API key
+        if not self.method.__self__.key:
+
+            # Raise an error if no key is provided
             raise APIKeyRequiredError
-    return decorator
+
+        # Call the method and return
+        return self.method(*args, **kwargs)

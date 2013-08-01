@@ -10,9 +10,13 @@
 # >> IMPORTS
 # =============================================================================
 # Python Imports
-import urllib
-import urllib2
+#import urllib
+#import urllib2
 import re
+#   Requests
+from requests import get as requests_get
+from requests import post as requests_post
+from requests.compat import urlencode
 
 # API Imports
 from .settings import STEAM_API_KEY, DEFAULT_LANGUAGE
@@ -134,7 +138,8 @@ class APIQuery(object):
             self._interface,
             self._method,
             self._version,
-            urllib.urlencode(self._parameters)
+            # urllib.urlencode(self._parameters)
+            urlencode(self._parameters)
         )
 
     @property
@@ -245,9 +250,12 @@ class APIQuery(object):
     def _execute_query(self):
         # GET
         if self.httpmethod == 'GET':
-            return urllib2.urlopen(self._url)
+            # return urllib2.urlopen(self._url)
+            return requests_get(self._url)
 
         # POST
-        data = urllib.urlencode(self.parameters)
-        req = urllib2.Request(self._url, data)
-        return urllib2.urlopen(req)
+        # data = urllib.urlencode(self.parameters)
+        data = urlencode(self.parameters)
+        # req = urllib2.Request(self._url, data)
+        # return urllib2.urlopen(req)
+        return requests_post(self._url, data)

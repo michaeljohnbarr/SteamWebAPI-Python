@@ -1,0 +1,4 @@
+# https://pypi.python.org/pypi/requests
+# http://www.python-requests.org/en/latest/user/install/
+# -i http://simple.crate.io/ requests
+requests

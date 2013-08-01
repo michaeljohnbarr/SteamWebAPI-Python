@@ -3,7 +3,7 @@
 # =============================================================================
 # Python Imports
 import re
-from urllib2 import HTTPError
+from requests import HTTPError
 
 # API Imports
 from .core import SteamWebAPI
