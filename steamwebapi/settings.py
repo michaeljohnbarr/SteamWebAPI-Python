@@ -36,4 +36,3 @@ STEAM_API_KEY = ''
 #         information will not be returned. It is suggested to always use a
 #         default.
 DEFAULT_LANGUAGE = 'en'
-

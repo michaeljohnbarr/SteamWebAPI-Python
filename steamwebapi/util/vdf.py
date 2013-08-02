@@ -1,5 +1,5 @@
 """
-.. module:: core
+.. module:: vdf
     :platform: Unix, Windows
     :synopsis: VDF (de)serialization.
     :synopsis: Distributed under the ISC License (see LICENSE)
