@@ -1,7 +1,17 @@
 # =============================================================================
 # >> IMPORTS
 # =============================================================================
+# Python Imports
 from unittest import TestCase, main
+
+# Settings Imports
+from steamwebapi.settings import STEAM_API_KEY, DEFAULT_LANGUAGE
+
+# Core Imports
+from steamwebapi.core import SteamWebAPI, APIQuery
+
+# Util Imports
+from steamwebapi.util.exceptions import APIKeyInvalidError
 
 
 # =============================================================================
@@ -12,7 +22,6 @@ class TestCoreSteamWebAPI(TestCase):
 
     def setUp(self):
         """Initializes a SteamWebAPI instance."""
-        from steamwebapi.core import SteamWebAPI
         self.steamwebapi = SteamWebAPI()
 
     # -------------------------------------------------------------------------
@@ -23,7 +32,6 @@ class TestCoreSteamWebAPI(TestCase):
         the STEAM_API_KEY from ./steamwebapi/settings.py.
 
         """
-        from steamwebapi.settings import STEAM_API_KEY
         self.assertEqual(
             self.steamwebapi.key,
             STEAM_API_KEY,
@@ -37,7 +45,6 @@ class TestCoreSteamWebAPI(TestCase):
         STEAM_API_KEY from ./steamwebapi/settings.py.
 
         """
-        from steamwebapi.settings import STEAM_API_KEY
         self.steamwebapi.key = 'XXXX0000XXXX0000XXXX0000XXXX0000'
         self.assertNotEqual(
             self.steamwebapi.key,
@@ -54,7 +61,6 @@ class TestCoreSteamWebAPI(TestCase):
         argument.
 
         """
-        from steamwebapi.core import SteamWebAPI
         self.steamwebapi = SteamWebAPI(key='XXXX0000XXXX0000XXXX0000XXXX0000')
         self.assertEqual(
             self.steamwebapi.key,
@@ -69,7 +75,6 @@ class TestCoreSteamWebAPI(TestCase):
         causing a regression for users that do not provide keyword arguments.
 
         """
-        from steamwebapi.core import SteamWebAPI
         # Set a fake (bad) Steam Web API Key
         self.steamwebapi = SteamWebAPI('XXXX0000XXXX0000XXXX0000XXXX0000')
         self.assertEqual(
@@ -85,8 +90,6 @@ class TestCoreSteamWebAPI(TestCase):
         will test by passing in 28 alphanumeric characters.
 
         """
-        from steamwebapi.core import SteamWebAPI
-        from steamwebapi.util.exceptions import APIKeyInvalidError
         with self.assertRaises(APIKeyInvalidError):
             # Send a 28 instead of 32 character API key
             self.steamwebapi = SteamWebAPI('XXXX0000XXXX0000XXXX0000XXXX')
@@ -97,8 +100,6 @@ class TestCoreSteamWebAPI(TestCase):
         will test by passing in a non-alphanumeric character.
 
         """
-        from steamwebapi.core import SteamWebAPI
-        from steamwebapi.util.exceptions import APIKeyInvalidError
         with self.assertRaises(APIKeyInvalidError):
             # Add a "." (non-alphanumeric character)
             self.steamwebapi = SteamWebAPI('XXXX0000XXXX0000XXXX.000XXXX0000')
@@ -109,7 +110,6 @@ class TestCoreSteamWebAPI(TestCase):
         the APIKeyInvalidError.
 
         """
-        from steamwebapi.core import SteamWebAPI
         self.steamwebapi = SteamWebAPI(key='')
         self.assertEqual(
             self.steamwebapi.key,
@@ -126,7 +126,6 @@ class TestCoreSteamWebAPI(TestCase):
         the DEFAULT_LANGUAGE from ./steamwebapi/settings.py.
 
         """
-        from steamwebapi.settings import DEFAULT_LANGUAGE
         self.assertEqual(
             self.steamwebapi.language,
             DEFAULT_LANGUAGE,
@@ -140,7 +139,6 @@ class TestCoreSteamWebAPI(TestCase):
         DEFAULT_LANGUAGE from ./steamwebapi/settings.py.
 
         """
-        from steamwebapi.settings import DEFAULT_LANGUAGE
         self.steamwebapi.language = 'not_a_real_language'
         self.assertNotEqual(
             self.steamwebapi.language,
@@ -157,7 +155,6 @@ class TestCoreSteamWebAPI(TestCase):
         name of the argument.
 
         """
-        from steamwebapi.core import SteamWebAPI
         # Set a fake (bad) Steam Web API Key
         self.steamwebapi = SteamWebAPI(language='not_a_real_language')
         self.assertEqual(
@@ -174,7 +171,6 @@ class TestCoreSteamWebAPI(TestCase):
         keyword arguments.
 
         """
-        from steamwebapi.core import SteamWebAPI
         # Set a fake (bad) Steam Web API Key
         self.steamwebapi = SteamWebAPI(
             'XXXX0000XXXX0000XXXX0000XXXX0000',
@@ -197,7 +193,6 @@ class TestAPIQuery(TestCase):
 
     def setUp(self):
         """Initializes an APIQuery instance."""
-        from steamwebapi.core import APIQuery
         self.apiquery = APIQuery(
             interface='ISteamWebAPIUtil',
             method='GetSupportedAPIList',
