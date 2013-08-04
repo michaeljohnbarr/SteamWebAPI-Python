@@ -188,6 +188,58 @@ class TestCoreSteamWebAPI(TestCase):
         )
 
 
+class TestAPIQuery(TestCase):
+    """Tests the core.APIQuery() class to ensure the correct content-type is
+    returned. We utilize ISteamWebAPIUtil().GetSupportedAPIList() as it
+    does not require a key or arguments, and should always be available.
+
+    """
+
+    def setUp(self):
+        """Initializes an APIQuery instance."""
+        from steamwebapi.core import APIQuery
+        self.apiquery = APIQuery(
+            interface='ISteamWebAPIUtil',
+            method='GetSupportedAPIList',
+            method_version=1,
+            httpmethod='GET',
+            parameters={},
+        )
+
+    def test_api_query_return_xml(self):
+        """Tests that calling the XML format returns the correct
+        content-type.
+
+        """
+        self.assertEqual(
+            self.apiquery.xml.headers['content-type'],
+            'text/xml; charset=UTF-8',
+            'The content-type headers returned do not match the XML type.',
+        )
+
+    def test_api_query_return_json(self):
+        """Tests that calling the JSON format returns the correct
+        content-type.
+
+        """
+        self.assertEqual(
+            self.apiquery.json.headers['content-type'],
+            'application/json; charset=UTF-8',
+            'The content-type headers returned do not match the JSON type.',
+        )
+
+    def test_api_query_return_vdf(self):
+        """Tests that calling the VDF format returns the correct
+        content-type.
+
+        """
+        self.assertEqual(
+            self.apiquery.vdf.headers['content-type'],
+            'text/vdf; charset=UTF-8',
+            'The content-type headers returned do not match the VDF type.',
+        )
+
+
 # =============================================================================
 # >> TEST FUNCTIONS
 # =============================================================================

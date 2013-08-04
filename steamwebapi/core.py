@@ -126,7 +126,9 @@ class APIQuery(object):
         self._version = 'v{0:04d}'.format(method_version)
         self._parameters = parameters
         self._httpmethod = str(httpmethod).upper()
-        self._url = self._encode_url()
+
+        # Set self._url
+        self._encode_url()
 
     def _encode_url(self):
         """.. method:: _encode_url()
@@ -135,12 +137,12 @@ class APIQuery(object):
 
         :returns:  url
         """
-        return 'http://api.steampowered.com/{0}/{1}/{2}/?{3}'.format(
+        self._url = 'http://api.steampowered.com/{0}/{1}/{2}/?{3}'.format(
             self._interface,
             self._method,
             self._version,
             # urllib.urlencode(self._parameters)
-            urlencode(self._parameters)
+            urlencode(self._parameters),
         )
 
     @property
@@ -215,9 +217,9 @@ class APIQuery(object):
         return self.as_xml()
 
     @property
-    def json(self, load=False):
+    def json(self):
         """.. attribute:: json"""
-        return self.as_json(load)
+        return self.as_json()
 
     @property
     def vdf(self):
@@ -232,7 +234,7 @@ class APIQuery(object):
         self._url += '&format=xml'
         return self._execute_query()
 
-    def as_json(self, load=False):
+    def as_json(self):
         """.. method:: as_json()"""
         # We need to encode the URL again to prevent appending the format
         # multiple times.

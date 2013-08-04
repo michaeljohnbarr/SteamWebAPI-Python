@@ -1,4 +1,16 @@
+"""
+.. module:: exceptions
+   :platform: Unix, Windows
+   :synopsis: Contains the API's "core" classes for constructing queries.
+
+.. moduleauthor:: Michael Barr <micbarr+developer@gmail.com>
+
+"""
+# =============================================================================
+# >> EXCEPTIONS
+# =============================================================================
 class SteamWebAPIError(Exception):
+    """The base Exception for the steamwebapi package."""
     pass
 
 
