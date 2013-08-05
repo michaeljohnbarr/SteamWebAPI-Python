@@ -70,11 +70,11 @@ class _BaseIDOTA2Match(SteamWebAPI):
         )
 
     @api_key_required
-    def GetMatchHistory(self, player_name=None, hero_id=None, game_mode=None,
-                        skill=None, date_min=None, date_max=None,
-                        min_players=None, account_id=None, league_id=None,
-                        start_at_match_id=None, matches_requested=None,
-                        tournament_games_only=None, method_version=1):
+    def GetMatchHistory(self, player_name='', hero_id='', game_mode='',
+                        skill='', date_min='', date_max='',
+                        min_players='', account_id='', league_id='',
+                        start_at_match_id='', matches_requested='',
+                        tournament_games_only='', method_version=1):
         """"""
         # Set up the parameters
         parameters = {
