@@ -3,7 +3,7 @@
 # =============================================================================
 # Python Imports
 import re
-from requests import HTTPError
+from collections import Iterable
 
 # API Imports
 from .core import SteamWebAPI
@@ -44,10 +44,11 @@ class ISteamUser(SteamWebAPI):
     @api_key_required
     def GetPlayerBans(self, steamids=[], method_version=1):
         """"""
-        if isinstance(steamids, str):
-            pass
-        else:
+        # If we are passed a non-string iterable, join steamids with ","
+        if not isinstance(steamids, str) and isinstance(steamids, Iterable):
             ",".join(steamids)
+        else:
+            steamids = str(steamids)
 
         # Set up the parameters
         parameters = {
@@ -67,9 +68,8 @@ class ISteamUser(SteamWebAPI):
     @api_key_required
     def GetPlayerSummaries(self, steamids=[], method_version=2):
         """"""
-        if isinstance(steamids, str):
-            pass
-        elif isinstance(steamids, list):
+        # If we are passed a non-string iterable, join steamids with ","
+        if not isinstance(steamids, str) and isinstance(steamids, Iterable):
             ",".join(steamids)
         else:
             steamids = str(steamids)
