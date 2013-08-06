@@ -7,51 +7,99 @@ from unittest import TestCase, main
 # Third-Party Python Imports
 from requests import HTTPError
 
+# User Imports
+from steamwebapi.user import ISteamUser
+
+# Util Imports
+from steamwebapi.util.exceptions import APIKeyRequiredError
 
 # =============================================================================
 # >> GLOBALS
 # =============================================================================
-VANITY_URL = 'http://steamcommunity.com/id/XE_ManUp/'
+VANITY_URL = 'XE_ManUp'
 PUBLIC_PROFILE = '76561197970309043'
-PRIVATE_PROFILE = '76561198061223360'
-FRIENDSONLY_PROFILE = '76561198013559637'
-VAC_BANNED = '76561197970309043'
-COMMUNITY_BANNED = ''
-ECONOMY_BANNED = ''
+PUBLIC_PROFILE_INT = int(PUBLIC_PROFILE)
+PRIVATE_PROFILE = '76561198069962646'
+FRIENDSONLY_PROFILE = '76561198061223360'
 
-class ISteamUserTest(TestCase):
-    PUBLIC_PROFILE = '76561197970309043'
-    PRIVATE_PROFILE = '76561198069962646'
-    FRIENDSONLY_PROFILE = '76561198061223360'
-
+# =============================================================================
+# >> ISteamUser Tests
+# =============================================================================
+class ISteamUserNoAPIKeyTest(TestCase):
     def setUp(self):
-        from steamwebapi.user import ISteamUser
-        self.iSteamUser = ISteamUser()
+        self.iSteamUser = ISteamUser(key='')
 
     def test_GetFriendList_no_api_key(self):
         """Make sure that APIKeyRequiredError is raised without a Steam Web API
         key.
 
         """
-        from steamwebapi.util.exceptions import APIKeyRequiredError
         with self.assertRaises(APIKeyRequiredError):
-            # Modify the ISteamUser() instance with an empty Steam Web API Key
-            self.iSteamUser.key = ''
             self.iSteamUser.GetFriendList(
-                steamid=ISteamUserTest.PUBLIC_PROFILE
+                steamid=PUBLIC_PROFILE
             )
+
+    def test_GetPlayerBans_no_api_key(self):
+        """Make sure that APIKeyRequiredError is raised without a Steam Web API
+        key.
+
+        """
+        with self.assertRaises(APIKeyRequiredError):
+            self.iSteamUser.GetPlayerBans(
+                steamids=[PUBLIC_PROFILE]
+            )
+
+    def test_GetPlayerSummaries_no_api_key(self):
+        """Make sure that APIKeyRequiredError is raised without a Steam Web API
+        key.
+
+        """
+        with self.assertRaises(APIKeyRequiredError):
+            self.iSteamUser.GetPlayerSummaries(
+                steamids=[PUBLIC_PROFILE]
+            )
+
+    def test_GetUserGroupList_no_api_key(self):
+        """Make sure that APIKeyRequiredError is raised without a Steam Web API
+        key.
+
+        """
+        with self.assertRaises(APIKeyRequiredError):
+            self.iSteamUser.GetUserGroupList(
+                steamid=PUBLIC_PROFILE
+            )
+
+    def test_ResolveVanityURL_no_api_key(self):
+        """Make sure that APIKeyRequiredError is raised without a Steam Web API
+        key.
+
+        """
+        with self.assertRaises(APIKeyRequiredError):
+            self.iSteamUser.ResolveVanityURL(
+                vanityURL=VANITY_URL,
+            )
+
+
+class ISteamUserTest(TestCase):
+    def setUp(self):
+        self.iSteamUser = ISteamUser()
     
     def test_GetFriendList_valid(self):
         """Test to make sure we get a response code of 200 OK from a public
         profile.
 
         """
+        # Retrieve the status code
+        status = self.iSteamUser.GetFriendList(
+            steamid=PUBLIC_PROFILE
+        ).json.status_code
+
+        # Run the test
         self.assertEqual(
-            self.iSteamUser.GetFriendList(
-                steamid=ISteamUserTest.PUBLIC_PROFILE
-            ).json.status_code,
+            status,
             200,
-            'Error retrieving friends list from a valid public profile.',
+            'Error retrieving friends list from a valid public profile. ' +
+            'Received Status ({0}) instead of Status (401).'.format(status),
         )
     
     def test_GetFriendList_private(self):
@@ -59,12 +107,17 @@ class ISteamUserTest(TestCase):
         public profile.
 
         """
+        # Retrieve the status code
+        status = self.iSteamUser.GetFriendList(
+            steamid=PRIVATE_PROFILE
+        ).json.status_code
+
+        # Run the test
         self.assertEqual(
-            self.iSteamUser.GetFriendList(
-                steamid=ISteamUserTest.PRIVATE_PROFILE
-            ).json.status_code,
+            status,
             401,
-            'Error retrieving friends list from a valid public profile.',
+            'Error retrieving friends list from a valid private profile. ' +
+            'Received Status ({0}) instead of Status (401).'.format(status),
         )
     
     def test_GetFriendList_friends_only(self):
@@ -72,46 +125,191 @@ class ISteamUserTest(TestCase):
         friends only profile.
 
         """
+        # Retrieve the status code
+        status = self.iSteamUser.GetFriendList(
+            steamid=FRIENDSONLY_PROFILE
+        ).json.status_code
+
+        # Run the test
         self.assertEqual(
-            self.iSteamUser.GetFriendList(
-                steamid=ISteamUserTest.FRIENDSONLY_PROFILE
-            ).json.status_code,
+            status,
             200,
-            'Error retrieving friends list from a valid friends only profile.',
+            'Error retrieving friends list from a valid friends only ' +
+            'profile. Received Status ({0}) instead of '.format(status) +
+            'Status (200).',
         )
 
-    def test_GetPlayerBans_no_api_key(self):
-        """Make sure that APIKeyRequiredError is raised without a Steam Web API
-        key.
+    def test_GetPlayerBans_list_valid(self):
+        """Test to make sure we get a response code of 200 OK from a public
+        profile.
 
         """
-        from steamwebapi.util.exceptions import APIKeyRequiredError
-        with self.assertRaises(APIKeyRequiredError):
-            # Modify the ISteamUser() instance with an empty Steam Web API Key
-            self.iSteamUser.key = ''
-            self.iSteamUser.GetPlayerBans(
-                steamids=ISteamUserTest.PUBLIC_PROFILE
-            )
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerBans(
+            steamids=[PUBLIC_PROFILE],
+        ).json.status_code
 
-    def test_GetPlayerBans_valid(self):
-        """Make sure that APIKeyRequiredError is raised without a Steam Web API
-        key.
-
-        """
+        # Run the test
         self.assertEqual(
-            self.iSteamUser.GetPlayerBans(
-                    steamids=ISteamUserTest.PUBLIC_PROFILE,
-            ).json.status_code,
+            status,
             200,
-            'Error retrieving player bans.',
+            'Error retrieving player bans. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
         )
 
-    #def test_GetPlayerSummaries_no_api_key(self):
-    #def test_GetPlayerSummaries_valid(self):
-    #def test_GetUserGroupList_no_api_key(self):
-    #def test_GetUserGroupList_valid(self):
-    #def test_ResolveVanityURL_no_api_key(self):
-    #def test_ResolveVanityURL_valid(self):
+    def test_GetPlayerBans_str_valid(self):
+        """Test to make sure we get a response code of 200 OK from a public
+        profile.
+
+        """
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerBans(
+            steamids=PUBLIC_PROFILE,
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving player bans. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_GetPlayerBans_int_valid(self):
+        """Test to make sure we get a response code of 200 OK from a public
+        profile.
+
+        """
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerBans(
+            steamids=PUBLIC_PROFILE,
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving player bans. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_GetPlayerBans_multiple_steamids_valid(self):
+        """Test to make sure we get a response code of 200 OK from multiple
+        public profiles.
+
+        """
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerBans(
+            steamids=PUBLIC_PROFILE,
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving player bans. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_GetPlayerSummaries_list_valid(self):
+        """Test to make sure we get a response code of 200 OK from a public
+        profile.
+
+        """
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerSummaries(
+            steamids=[PUBLIC_PROFILE],
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving player summary. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_GetPlayerSummaries_str_valid(self):
+        """Test to make sure we get a response code of 200 OK from a public
+        profile.
+
+        """
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerSummaries(
+            steamids=PUBLIC_PROFILE,
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving player summary. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_GetPlayerSummaries_int_valid(self):
+        """Test to make sure we get a response code of 200 OK from a public
+        profile.
+
+        """
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerSummaries(
+            steamids=PUBLIC_PROFILE_INT,
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving player summary. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_GetPlayerSummaries_multiple_steamids_valid(self):
+        """Test to make sure we get a response code of 200 OK from multiple
+        public profiles.
+
+        """
+        # Retrieve the status code
+        status = self.iSteamUser.GetPlayerSummaries(
+            steamids=[PUBLIC_PROFILE, PUBLIC_PROFILE],
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving player summary. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_GetUserGroupList_valid(self):
+        # Retrieve the status code
+        status = self.iSteamUser.GetUserGroupList(
+            steamid=PUBLIC_PROFILE,
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving user group list. Received Status ' +
+            ' ({0}) instead of Status (200).'.format(status),
+        )
+
+    def test_ResolveVanityURL_valid(self):
+        # Retrieve the status code
+        status = self.iSteamUser.ResolveVanityURL(
+            vanityURL=VANITY_URL,
+        ).json.status_code
+
+        # Run the test
+        self.assertEqual(
+            status,
+            200,
+            'Error retrieving vanity URL. Received Status ' +
+            '({0}) instead of Status (200)'.format(status),
+        )
 
 
 if __name__ == '__main__':
