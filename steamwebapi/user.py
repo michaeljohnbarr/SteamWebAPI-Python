@@ -46,7 +46,7 @@ class ISteamUser(SteamWebAPI):
         """"""
         # If we are passed a non-string iterable, join steamids with ","
         if not isinstance(steamids, str) and isinstance(steamids, Iterable):
-            ",".join(steamids)
+            ",".join(map(str, steamids))
         else:
             steamids = str(steamids)
 
@@ -70,7 +70,7 @@ class ISteamUser(SteamWebAPI):
         """"""
         # If we are passed a non-string iterable, join steamids with ","
         if not isinstance(steamids, str) and isinstance(steamids, Iterable):
-            ",".join(steamids)
+            ",".join(map(str, steamids))
         else:
             steamids = str(steamids)
 
@@ -277,10 +277,12 @@ class IPlayerService(SteamWebAPI):
                       include_played_free_games=True, appids_filter=[],
                       method_version=1):
         """Retrieves games owned by the given SteamID."""
-        if isinstance(appids_filter, str):
-            pass
+        # If we are passed a non-string iterable, join steamids with ","
+        if not isinstance(appids_filter, str): 
+            if isinstance(appids_filter, Iterable):
+                ",".join(map(str, appids_filter))
         else:
-            ",".join(appids_filter)
+            appids_filter = str(appids_filter)
 
         # Set up the parameters
         parameters = {
